@@ -1,5 +1,5 @@
 [![CSDN](https://img.shields.io/badge/CSDN-@xiaolongonly-blue.svg?style=flat)](http://blog.csdn.net/guoxiaolongonly)
-[![CSDN](https://img.shields.io/badge/PersonBlog-@xiaolongonly-blue.svg?style=flat)](http://xiaolongonly.cn/)
+[![PersonBlog](https://img.shields.io/badge/PersonBlog-@xiaolongonly-blue.svg?style=flat)](http://xiaolongonly.cn/)
 
 
 # 设计意图
@@ -15,6 +15,10 @@
 ...
 其余就不算了
 下面给出这类彩票的计算公式
+
+n个全是正选号码：![image](https://github.com/xiaolongonly/Ticket-Analysis/blob/master/7.png)
+
+n个正选，一个特别号码：![image](https://github.com/xiaolongonly/Ticket-Analysis/blob/master/6%2B1.png) - ![image](https://github.com/xiaolongonly/Ticket-Analysis/blob/master/7.png)
 
 想起了我大学的时候的概率统计，学概率统计的时候老师就说过了，赌博（指合法的彩票这类的），还有保险这个行业，基本上都能从概率学来计算，而且如果仔细算一下这里面的概率，就能发现这些都是非常暴利的行业。好吧，没研究过体彩的盈利手段，可能都是从税上面征的。而保险其实如果有经过大规模的数据分析的话，是可以知道赔保的概率很低，所以基本上买保险的人数乘以保险额会远远大于预估出来的全部需要出险的赔偿额的，剩下的都是利润利润。
 如果从心理学上面来讲的话，买保险大家都是图个心安，买彩票则是赌，人类果然智慧无限，对这两类人群都做了细致的划分和业务推销..扯远了扯远了..
