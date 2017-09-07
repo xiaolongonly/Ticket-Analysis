@@ -20,7 +20,7 @@ import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-public class MainActivity extends AppCompatActivity {
+public class AverageActivity extends AppCompatActivity {
     private TextView tvGenerate;
     private TextView tvData;
     private EditText etAllNum;
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     if (numberList.contains(Integer.valueOf(etNumberEdit.getText().toString()))) {
-                        Toast.makeText(MainActivity.this, "已经添加过该数据", Toast.LENGTH_LONG).show();
+                        Toast.makeText(AverageActivity.this, "已经添加过该数据", Toast.LENGTH_LONG).show();
                         return true;
                     }
                     numberList.add(Integer.valueOf(etNumberEdit.getText().toString()));
