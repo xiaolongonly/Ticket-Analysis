@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CircleProgress">
+        <attr name="max" format="integer"/>
+        <attr name="round_width" format="dimension"/>
+        <attr name="round_color" format="color"/>
+        <attr name="progress_color" format="color"/>
+        <attr name="text_size" format="dimension"/>
+        <attr name="text_color" format="color"/>
+        <attr name="style">
+            <enum name="STROKE" value="1"/>
+            <enum name="FILL" value="2"/>
+        </attr>
+    </declare-styleable>
+
+
+    <declare-styleable name="TagFlowLayout">
+        <attr name="auto_select_effect" format="boolean"></attr>
+        <attr name="max_select" format="integer"></attr>
+        <attr name="gravity">
+            <enum name="left" value="-1"/>
+            <enum name="center" value="0"/>
+            <enum name="right" value="1"/>
+        </attr>
+    </declare-styleable>
+    <!--zxing-->
+    <declare-styleable name="innerrect">
+        <attr name="inner_width" format="dimension"/>
+        <attr name="inner_height" format="dimension"/>
+        <attr name="inner_margintop" format="dimension"/>
+        <attr name="inner_corner_color" format="color"/>
+        <attr name="inner_corner_length" format="dimension"/>
+        <attr name="inner_corner_width" format="dimension"/>
+        <attr name="inner_scan_bitmap" format="reference"/>
+        <attr name="inner_scan_speed" format="integer"/>
+        <attr name="inner_scan_iscircle" format="boolean"/>
+    </declare-styleable>
+
+</resources>

@@ -1,0 +1,96 @@
+apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
+
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.0"
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        applicationId "com.standards.schoolfoodsafetysupervision"
+        minSdkVersion 16
+        targetSdkVersion 26
+
+        buildConfigField("String", "DEVICE_TYPE", DEVICE_TYPE)
+        buildConfigField("String", "INTER_VERSION", INTER_VERSION)
+        buildConfigField("int", "TIME_CLICK_IGNORE", TIME_CLICK_IGNORE)
+        buildConfigField("String", "HOST_URL", HOST_URL)
+        //sp常量
+        buildConfigField("String", "KEY_APP_INFO", KEY_APP_INFO)
+        buildConfigField("String", "KEY_USER_RECORD", KEY_USER_RECORD)
+
+        ndk {
+            //设置支持的SO库架构
+            abiFilters 'armeabi', 'x86', 'armeabi-v7a'
+        }
+
+        //dex突破65535的限制
+        multiDexEnabled true
+    }
+    ext {
+        supportLibVersion = '26.0.0'
+    }
+    lintOptions {
+        abortOnError false
+    }
+    signingConfigs {
+        debug {
+//            storeFile file(KEYSTORE)
+//            storePassword STORE_PASSWORD
+//            keyAlias KEYALIAS
+//            keyPassword KEY_PASSWORD
+        }
+        release {
+//            storeFile file(KEYSTORE)
+//            storePassword STORE_PASSWORD
+//            keyAlias KEYALIAS
+//            keyPassword KEY_PASSWORD
+        }
+    }
+    buildTypes {
+        debug {
+            //显示log
+            buildConfigField("boolean", "DEBUG_LOG", "true")
+            versionNameSuffix "-debug"
+            //是否使用代码混淆
+            minifyEnabled false
+            zipAlignEnabled false
+            //移除无用的resource文件
+            shrinkResources false
+            signingConfig signingConfigs.debug
+
+        }
+        release {
+            // 不显示Log
+            buildConfigField("boolean", "DEBUG_LOG", "false")
+
+            //是否使用代码混淆
+            minifyEnabled false
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+    packagingOptions {
+        exclude 'Change.Log'
+        exclude 'META-INF/LICENSE.txt'
+    }
+}
+
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile project(':devlib')
+    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "utf-8"
+}

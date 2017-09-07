@@ -1,0 +1,72 @@
+<resources>
+
+    <string name="app_name">ListGroupLibary</string>
+
+    <string name="load_more_over">已经全部加载完毕</string>
+
+    <string name="load_more_error">加载失败[%d]</string>
+
+    <string name="load_more_ing">正在加载数据</string>
+
+    <!--时间格式化-->
+    <string name="str_yesterday">昨天</string>
+    <string name="str_hoursago">小时前</string>
+    <string name="str_minsago">分钟前</string>
+    <string name="str_secondago">秒前</string>
+
+    <string name="number_character">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLIMNOPQRSTUVWXYZ</string>
+
+
+    <!-- 时间相关 -->
+    <string name="today">今天</string>
+    <string name="yesterday">昨天</string>
+    <string name="emoring">凌晨</string>
+    <string name="moring">早上</string>
+    <string name="afteroon">下午</string>
+    <string name="night">晚上</string>
+    <string name="format_year">yyyy</string>
+    <string name="format_date_year">yyyy年MM月dd日</string>
+    <string name="midday">中午</string>
+    <string name="format_date">MM月dd日</string>
+    <string name="hour_ago">小时前</string>
+    <string name="minute_ago">分钟前</string>
+    <string name="seconds_ago">秒前</string>
+    <string name="tomorrow">明天</string>
+    <string name="January">一月</string>
+    <string name="February">二月</string>
+    <string name="March">三月</string>
+    <string name="April">四月</string>
+    <string name="May">五月</string>
+    <string name="June">六月</string>
+    <string name="July">七月</string>
+    <string name="August">八月</string>
+    <string name="September">九月</string>
+    <string name="October">十月</string>
+    <string name="November">十一月</string>
+    <string name="December">十二月</string>
+    <string name="moment_ago">刚刚</string>
+
+    <!-- 版本更新 -->
+    <string name="update_waiting">更新中，请稍候…</string>
+    <string name="update">软件升级</string>
+    <string name="update_down_success">已经下载好啦，是否马上安装</string>
+    <string name="update_download_waiting">区县——正在下载…</string>
+    <string name="update_download_err">下载失败，请重新下载</string>
+    <string name="update_cancel">以后再说</string>
+    <string name="update_install_right_now">立即安装</string>
+    <string name="update_is_downloading">正在下载中，请稍后</string>
+    <string name="update_version_marker">V</string>
+    <string name="update_version">版本更新</string>
+    <string name="update_button_update">更新</string>
+
+
+    <string name="permission_get_accounts_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_GET_ACCOUNTS</string>
+    <string name="permission_read_phone_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_READ_PHONE_STATE</string>
+    <string name="permission_call_phone_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_CALL_PHONE</string>
+    <string name="permission_camera_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_CAMERA</string>
+    <string name="permission_access_fine_location_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_ACCESS_FINE_LOCATION</string>
+    <string name="permission_access_coarse_location_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_ACCESS_COARSE_LOCATION</string>
+    <string name="permission_read_external_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_READ_EXTERNAL_STORAGE</string>
+    <string name="permission_white_external_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_WRITE_EXTERNAL_STORAGE</string>
+    <string name="permission_recode_audio_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_RECORD_AUDIO</string>
+</resources>

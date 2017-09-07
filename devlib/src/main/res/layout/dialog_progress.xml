@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:wheel="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_progress"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!--<com.pnikosis.materialishprogress.ProgressWheel-->
+        <!--android:id="@+id/progress"-->
+        <!--android:layout_width="@dimen/progress_size"-->
+        <!--android:layout_height="@dimen/progress_size"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--wheel:matProg_barColor="@color/progressColor"-->
+        <!--wheel:matProg_progressIndeterminate="true" />-->
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="80px"
+            android:layout_height="80px"
+            android:layout_gravity="center"
+            android:indeterminateBehavior="repeat"
+            android:indeterminateDrawable="@drawable/base_loading" />
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="4dp"
+            android:text="加载中……"
+            android:textColor="#f2f5f7"
+            android:textSize="14sp" />
+    </LinearLayout>
+</LinearLayout>
