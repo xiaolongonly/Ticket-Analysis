@@ -1,17 +1,24 @@
 package com.standards.library.model;
 
-import com.standards.library.app.ReturnCodeConfig;
 import com.google.gson.annotations.SerializedName;
+import com.standards.library.app.ReturnCodeConfig;
 
+/**
+ * <网络请求返回实体类>
+ *
+ * @author chenml@cncn.com
+ * @data: 2015/11/16 20:31
+ * @version: V1.0
+ */
 public class Response<T> {
 
-    @SerializedName("status")
+    @SerializedName("showapi_res_code")
     public int rsCode;
 
-    @SerializedName("message")
+    @SerializedName("showapi_res_error")
     public String rsMsg;
 
-    @SerializedName("object")
+    @SerializedName("showapi_res_body")
     public T data;
 
     public Response(int rsCode) {

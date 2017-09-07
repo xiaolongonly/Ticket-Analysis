@@ -1,4 +1,4 @@
-package cn.xiaolong.ticketsystem;
+package cn.xiaolong.ticketsystem.ui;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,6 +20,11 @@ import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import cn.xiaolong.ticketsystem.thread.DefaultThreadFactory;
+import cn.xiaolong.ticketsystem.thread.TicketRandomRunnable;
+import cn.xiaolong.ticketsystem.adapter.NumberListAdapter;
+import cn.xiaolong.ticketsystem.R;
+
 public class AverageActivity extends AppCompatActivity {
     private TextView tvGenerate;
     private TextView tvData;
@@ -39,7 +44,7 @@ public class AverageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_average);
         avg = 0;
 //        sb = new StringBuilder();
         etAllNum = (EditText) findViewById(R.id.etAllNum);
@@ -136,7 +141,7 @@ public class AverageActivity extends AppCompatActivity {
 
     private void runTask(ThreadPoolExecutor threadPoolExecutor, Handler handler, String allNum,
                          String chooseSize, int threadTask, List<Integer> numberList) {
-        threadPoolExecutor.execute(new MyRunnable(handler, Integer.valueOf(allNum),
+        threadPoolExecutor.execute(new TicketRandomRunnable(handler, Integer.valueOf(allNum),
                 Integer.valueOf(chooseSize), threadTask, numberList));
 //        threadPoolExecutor.execute(new MyRunnable(handler));
         taskCount++;

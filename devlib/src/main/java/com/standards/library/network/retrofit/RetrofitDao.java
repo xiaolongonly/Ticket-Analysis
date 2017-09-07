@@ -5,6 +5,7 @@ import com.standards.library.network.NetworkConfig;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -25,8 +26,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * 缓存相关： http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2016/0115/3873.html
  * <p>
  * http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2016/0131/3930.html
- *
+ * <p>
  * 网络层处理类，主要是创建Retrofit对象，并添加Okhttp拦截等...
+ *
  * @data: 2016/2/17 11:06
  * @version: V1.0
  */
@@ -37,8 +39,9 @@ public class RetrofitDao {
     private Retrofit mRetrofit;
 
     public static Retrofit buildRetrofit(IBuildPublicParams iBuildPublicParams, CookieJar cookieJar) {
-        return new RetrofitDao(iBuildPublicParams,cookieJar).mRetrofit;
+        return new RetrofitDao(iBuildPublicParams, cookieJar).mRetrofit;
     }
+
     public static Retrofit buildRetrofit(IBuildPublicParams iBuildPublicParams) {
         return new RetrofitDao(iBuildPublicParams, new CookieJar() {
             @Override
@@ -48,11 +51,12 @@ public class RetrofitDao {
 
             @Override
             public List<Cookie> loadForRequest(HttpUrl url) {
-                return null;
+                return new ArrayList<>();
             }
         }).mRetrofit;
     }
-    private RetrofitDao(IBuildPublicParams iBuildPublicParams,CookieJar cookieJar) {
+
+    private RetrofitDao(IBuildPublicParams iBuildPublicParams, CookieJar cookieJar) {
         if (mRetrofit == null) {
             if (NetworkConfig.getBaseUrl() == null || NetworkConfig.getBaseUrl().trim().equals("")) {
                 throw new RuntimeException("网络模块必须设置在Application处调用 请求的地址 调用方法：NetworkConfig.setBaseUrl(String url)");

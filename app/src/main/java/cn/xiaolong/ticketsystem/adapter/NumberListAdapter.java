@@ -1,4 +1,4 @@
-package cn.xiaolong.ticketsystem;
+package cn.xiaolong.ticketsystem.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +10,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
+
+import cn.xiaolong.ticketsystem.R;
 
 /**
  * <请描述这个类是干什么的>

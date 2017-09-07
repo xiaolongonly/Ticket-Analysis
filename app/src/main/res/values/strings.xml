@@ -1,3 +1,25 @@
 <resources>
-    <string name="app_name">TicketSystem</string>
+    <string name="app_name">彩票开奖查询</string>
+
+    <!-- 请求状态-->
+    <string name="load_system_busy">一不留神，页面走丢啦~</string>
+    <string name="load_loading_dialog_text">加载中</string>
+    <string name="load_empty">暂无数据</string>
+    <string name="load_no_network">好像断网啦~</string>
+    <string name="load_try_again">点击重试</string>
+    <string name="load_net_ungeliable">网络不给力，请稍后再试</string>
+    <string name="load_empty_search">抱歉未找到相关结果</string>
+    <string name="load_loading">正在加载中...</string>
+    <string name="load_time_out">连接超时...</string>
+    <string name="load_user_invalid">当前用户已过期</string>
+    <string name="service_conn_fail">无法连接服务器</string>
+
+    <!--登录-->
+    <string name="account_login_title">登录</string>
+    <string name="account_login_title_right">注册</string>
+    <string name="account_login_btn">确定登录</string>
+    <string name="account_login_forget">忘记密码？</string>
+    <string name="account_login_account_hint">请输入手机号</string>
+    <string name="account_login_verify_hint">请输入查询验证码</string>
+
 </resources>

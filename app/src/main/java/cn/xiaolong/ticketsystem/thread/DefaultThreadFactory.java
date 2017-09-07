@@ -1,4 +1,4 @@
-package cn.xiaolong.ticketsystem;
+package cn.xiaolong.ticketsystem.thread;
 
 /**
  * @author xiaolong

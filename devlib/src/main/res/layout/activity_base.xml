@@ -8,10 +8,10 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="230px"
+        android:layout_height="130px"
         android:background="?attr/colorPrimary"
-        app:contentInsetStart="0px"
-        app:contentInsetRight="0px" />
+        app:contentInsetRight="0px"
+        app:contentInsetStart="0px" />
 
     <RelativeLayout
         android:id="@+id/content"

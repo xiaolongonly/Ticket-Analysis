@@ -1,6 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#e20000</color>
+    <color name="colorPrimaryDark">#e20000</color>
+    <color name="colorAccent">#e20000</color>
+    <color name="accent">#e20000</color>
+    <color name="textColorPrimary">#333333</color>
+    <color name="windowBackground">#f2f4f5</color>
+    <!--主色调-->
+    <color name="main_red_color">#e20000</color>
+    <color name="main_gray_color">#888888</color>
+    <color name="main_black_color_999999">#999999</color>
+
+    <!--切线-->
+    <color name="main_divider_color">#DBDBDB</color>
+    <!-- 重要级文字信息标题-->
+    <color name="main_black_color_333333">#333333</color>
+    <!-- 普通级导航名称和提示-->
+    <color name="main_normal_black_color">#666666</color>
+    <!-- 背景底色-->
+    <color name="main_content_color">#F2F3F5</color>
+    <!-- 辅助信息-->
+    <color name="main_hint_color">#cccccc</color>
+    <!-- 辅助信息-->
+    <color name="half_white">#80ffffff</color>
+    <color name="gray_cae3ff">#cae3ff</color>
+    <!--透明-->
+    <color name="main_transparent">#00000000</color>
+    <color name="dividerLineColor">#dbdbdb</color>
+    <color name="white_50">#50ffffff</color>
+    <color name="text_color_888888">#888888</color>
+    <color name="text_color_999999">#999999</color>
+    <color name="text_color_808080">#808080</color>
+    <color name="main_blue_color_4c65ed_50">#804c65ed</color>
+    <color name="line_color_3954e4">#3954e4</color>
+    <color name="white_40">#66ffffff</color>
+    <color name="white_10">#19ffffff</color>
+    <color name="blue_color_0363e2">#0363e2</color>
+
+    <color name="red_color_ff7f7f">#ff7f7f</color>
+    <color name="green_color_56d072">#56d072</color>
+
+    <color name="gray_color_919191">#919191</color>
+
+    <color name="dialog_hint_color">#dddddd</color>
 </resources>

@@ -1,11 +1,97 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="MyAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <!--标题栏颜色-->
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <!--状态栏颜色-->
+        <item name="colorControlNormal">@color/accent</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="windowActionBar">false</item>
+        <!--防止使用默认主题-->
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/windowBackground</item>
+        <!--<item name="android:windowAnimationStyle">@style/Bright.Activity.Animation.Right</item>-->
+    </style>
+
+    <style name="CustomAppTheme" parent="@style/MyAppTheme"></style>
+
+    <style name="divider_horizontal">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/main_divider_color</item>
+    </style>
+
+    <style name="divider_vertical">
+        <item name="android:layout_width">1px</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:background">@color/main_divider_color</item>
+    </style>
+
+    <!-- 自定义仿IOS的ActionSheet底部Dialog的样式 ，有模糊效果 -->
+    <style name="ActionSheetDialogStyle" parent="@android:style/Theme.Dialog">
+        <!-- 背景透明 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- 浮于Activity之上 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 边框 -->
+        <item name="android:windowFrame">@null</item>
+        <!-- Dialog以外的区域模糊效果 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- Dialog进入及退出动画 -->
+        <item name="android:windowAnimationStyle">@style/ActionSheetDialogAnimation</item>
+    </style>
+    <!-- ActionSheet进出动画 -->
+    <style name="ActionSheetDialogAnimation" parent="@android:style/Animation.Dialog">
+        <item name="android:windowEnterAnimation">@anim/actionsheet_dialog_in</item>
+        <item name="android:windowExitAnimation">@anim/actionsheet_dialog_out</item>
+    </style>
+
+    <style name="fullscreen_dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/dialog_bg</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+
+    <style name="style_checkdetail_text_left">
+        <item name="android:layout_width">115px</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingBottom">28px</item>
+        <item name="android:paddingTop">26px</item>
+        <item name="android:textSize">28px</item>
+        <item name="android:textColor">@color/main_gray_color</item>
+    </style>
+
+    <style name="style_checkdetail_text_right">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingBottom">28px</item>
+        <item name="android:paddingTop">26px</item>
+        <item name="android:layout_marginLeft">50px</item>
+        <item name="android:gravity">right</item>
+        <item name="android:textSize">28px</item>
+        <item name="android:textColor">@color/main_black_color_333333</item>
+    </style>
 </resources>

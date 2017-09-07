@@ -14,14 +14,12 @@ public interface ReturnCode {
     //失败
     int LOCAL_ERROR_TYPE_ERROR = 0x10108;
 
-    //数据为空
-    int LOCAL_ERROR_EMPTY = 0x10122;
 
     //成功
-    int CODE_SUCCESS = 1;
+    int CODE_SUCCESS = 0;
 
     //失败
-    int CODE_ERROR = 0;
+    int CODE_ERROR = -1;
 
 
 

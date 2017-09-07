@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CustomAppTheme" parent="@style/MyAppTheme">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+    </style>
+
+    <style name="AppTheme.Launcher" parent="@style/MyAppTheme">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+        <!--<item name="android:windowBackground">@drawable/bg_launch</item>-->
+    </style>
+</resources>

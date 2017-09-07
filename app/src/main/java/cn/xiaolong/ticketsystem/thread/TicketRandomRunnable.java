@@ -1,4 +1,4 @@
-package cn.xiaolong.ticketsystem;
+package cn.xiaolong.ticketsystem.thread;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,7 +20,7 @@ import java.util.Random;
  * @date: 2017/9/5 10:13
  */
 
-public class MyRunnable implements Runnable {
+public class TicketRandomRunnable implements Runnable {
     public Handler mHandler;
     /**
      * 默认随机量/条
@@ -45,11 +45,11 @@ public class MyRunnable implements Runnable {
     private List<Integer> initData;
     private int defaultSum;
 
-    public MyRunnable(Handler mHandler) {
+    public TicketRandomRunnable(Handler mHandler) {
         this(mHandler, DEFAULT_ALL_NUM, DEFAULT_CHOOSE_SIZE, DEFAULT_TASK_SIZE, new ArrayList<Integer>());
     }
 
-    public MyRunnable(Handler handler, int allNum, int size, int generateTaskSize, List<Integer> currentNumber) {
+    public TicketRandomRunnable(Handler handler, int allNum, int size, int generateTaskSize, List<Integer> currentNumber) {
         mHandler = handler;
         this.randomNum = (generateTaskSize == 0 ? DEFAULT_TASK_SIZE : generateTaskSize);
         this.chooseSize = size == 0 ? DEFAULT_CHOOSE_SIZE : size;
