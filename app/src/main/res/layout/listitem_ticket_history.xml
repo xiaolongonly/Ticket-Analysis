@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="30px"
+
+    android:background="?selectableItemBackground"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="30px">
+
+        <TextView
+            android:id="@+id/tvOpenSerial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="201705期开奖结果"
+            android:textColor="@color/main_black_color_333333"
+            android:textSize="44px" />
+
+
+        <TextView
+            android:id="@+id/tvOpenTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="09月07日（周四）开奖"
+            android:textColor="@color/main_black_color_333333"
+            android:textSize="44px" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvOpenResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40px"
+        android:layout_marginLeft="120px"
+        android:layout_marginRight="120px"
+        android:layout_marginTop="40px"
+        android:gravity="center_horizontal"
+        android:text="10086"
+        android:textColor="@color/main_normal_black_color"
+        android:textSize="80px" />
+</LinearLayout>

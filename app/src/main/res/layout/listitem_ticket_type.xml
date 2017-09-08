@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="30px"
+        android:paddingRight="30px"
+        android:paddingTop="22px">
+
+        <ImageView
+            android:id="@+id/ivLocation"
+            android:layout_width="40px"
+            android:layout_height="40px"
+            android:src="@drawable/ic_location" />
+
+        <TextView
+            android:id="@+id/tvArea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10px"
+            android:layout_toRightOf="@id/ivLocation"
+            android:text="安徽"
+            android:textColor="@color/main_normal_black_color"
+            android:textSize="36px" />
+
+        <View
+            style="@style/divider_horizontal"
+            android:layout_below="@+id/tvArea"
+            android:layout_marginTop="8px" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:paddingBottom="30px"
+        android:paddingLeft="30px"
+        android:paddingRight="30px"
+        android:paddingTop="22px">
+
+
+        <TextView
+            android:id="@+id/tvTicketName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="福建体彩36选7"
+            android:textColor="@color/main_normal_black_color"
+            android:textSize="48px" />
+
+        <TextView
+            android:id="@+id/tvNote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTicketName"
+            android:layout_marginTop="15px"
+            android:text="每天9:00开奖"
+            android:textColor="@color/main_hint_color"
+            android:textSize="36px" />
+
+        <ImageView
+            android:layout_width="28px"
+            android:layout_height="52px"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_narrow_right" />
+
+    </RelativeLayout>
+</LinearLayout>

@@ -46,7 +46,7 @@
 
 
     <integer-array name="refresh_color">
-        <item>@color/main_blue</item>
+        <item>@color/main_red</item>
     </integer-array>
 
 

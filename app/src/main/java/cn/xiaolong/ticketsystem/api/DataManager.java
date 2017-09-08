@@ -5,6 +5,9 @@ import com.standards.library.model.Response;
 
 import java.util.List;
 
+import cn.xiaolong.ticketsystem.bean.TicketInfo;
+import cn.xiaolong.ticketsystem.bean.TicketOpenData;
+import cn.xiaolong.ticketsystem.bean.TicketType;
 import retrofit2.http.Field;
 import rx.Observable;
 
@@ -17,8 +20,29 @@ import rx.Observable;
 public class DataManager extends ResponseHandle {
 
     //获取appId
-    public static Observable<ListData<String>> getTicketList(String appid, String mysecret) {
-        return Dao.getApiService().getTicketList(appid, mysecret)
+    public static Observable<ListData<TicketType>> getTicketList() {
+        return Dao.getApiService().getTicketList(null)
+                .flatMap(newEntityData())
+                .compose(applySchedulersWithToken());
+    }
+
+    //获取最新开奖信息
+    public static Observable<ListData<TicketOpenData>> getNewestOpen(String code) {
+        return Dao.getApiService().getNewestOpen(code)
+                .flatMap(newEntityData())
+                .compose(applySchedulersWithToken());
+    }
+
+    //获取单期开奖信息
+    public static Observable<ListData<TicketOpenData>> getSinglePeroidCheck(String code, String issue) {
+        return Dao.getApiService().getSinglePeroidCheck(code, issue)
+                .flatMap(newEntityData())
+                .compose(applySchedulersWithToken());
+    }
+
+    //获取单期开奖信息
+    public static Observable<ListData<TicketOpenData>> getMutiPeriodCheck(String code, String count,String endTime) {
+        return Dao.getApiService().getMutiPeriodCheck(code, endTime,count)
                 .flatMap(newEntityData())
                 .compose(applySchedulersWithToken());
     }

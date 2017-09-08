@@ -14,7 +14,7 @@ public class ListData<T> extends BaseInfo implements Serializable{
 	@SerializedName("curPage")
 	public int curPage;
 
-	@SerializedName("list")
+	@SerializedName("result")
 	public List<T> list;
 
 }

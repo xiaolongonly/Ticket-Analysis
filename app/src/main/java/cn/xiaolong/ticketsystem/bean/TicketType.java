@@ -12,21 +12,21 @@ import com.standards.library.model.BaseInfo;
 
 public class TicketType extends BaseInfo {
     @SerializedName("series")
-    public String series;
+    public String series; //彩票类型列表
     @SerializedName("area")
-    public String area;
+    public String area;//所属地区
     @SerializedName("issuer")
-    public String issuer;
+    public String issuer; //彩票分类
     @SerializedName("times")
-    public String times;
+    public String times; //每天开奖次数
     @SerializedName("hots")
-    public String hots;
+    public String hots; //是否热门彩票
     @SerializedName("high")
-    public String high;
+    public String high; //是否高频彩票
     @SerializedName("code")
-    public String code;
+    public String code; //彩票的编号
     @SerializedName("notes")
-    public String notes;
+    public String notes; //彩票描述
     @SerializedName("descr")
-    public String descr;
+    public String descr; //彩票名字
 }

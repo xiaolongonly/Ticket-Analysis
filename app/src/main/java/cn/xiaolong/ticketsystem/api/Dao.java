@@ -27,7 +27,8 @@ public class Dao {
     }
 
     private static HttpUrl.Builder buildPublicParams(HttpUrl.Builder builder) {
-//        builder.addQueryParameter("showapi_sign", BuildConfig.TICKET_SECRET);
+        builder.addQueryParameter("showapi_sign", BuildConfig.TICKET_SECRET);
+        builder.addQueryParameter("showapi_appid", BuildConfig.TICKET_APP_ID);
         return builder;
     }
 

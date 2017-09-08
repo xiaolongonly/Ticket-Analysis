@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="progressColor">#5588FF</color>
-    <color name="main_blue">#1f89ed</color>
+    <color name="progressColor">#e20000</color>
+    <color name="main_red">#e20000</color>
     <color name="dialog_bg">#a6000000</color>
 
     <color name="bg_color">#EDEDED</color>
