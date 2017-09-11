@@ -7,5 +7,5 @@ package cn.xiaolong.ticketsystem.group;
  * @version: V1.0
  */
 public enum Scene {
-    DEFAULT
+    DEFAULT,TICKET_FAVORITE
 }

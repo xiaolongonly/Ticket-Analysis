@@ -26,6 +26,12 @@ public class LoadingConfig {
                 emptyResource.setImage(R.drawable.ic_load_empty);
                 loadEntity.put(ReturnCode.CODE_EMPTY, emptyResource);
                 break;
+            case TICKET_FAVORITE:
+                emptyResource = new LoadResource();
+                emptyResource.setErrorText("暂无数据，点击前往添加！");
+                emptyResource.setImage(R.drawable.ic_load_empty);
+                loadEntity.put(ReturnCode.CODE_EMPTY, emptyResource);
+                break;
             default:
                 break;
         }

@@ -94,4 +94,10 @@
         <item name="android:textSize">28px</item>
         <item name="android:textColor">@color/main_black_color_333333</item>
     </style>
+
+    <style name="MyTabLayoutTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/white_50</item>
+    </style>
+
 </resources>

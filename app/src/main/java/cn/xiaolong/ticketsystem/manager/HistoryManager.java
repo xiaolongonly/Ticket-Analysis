@@ -38,7 +38,7 @@ public class HistoryManager extends BaseGroupListManager<TicketOpenData> {
                 })
                 .doOnNext(ticketOpenDataListData -> {
                     int size = ticketOpenDataListData.list.size();
-                    endTimeMill = ticketOpenDataListData.list.get(size - 1).timestamp * 1000;
+                    endTimeMill = (ticketOpenDataListData.list.get(size - 1).timestamp - 1) * 1000;
                 });
     }
 

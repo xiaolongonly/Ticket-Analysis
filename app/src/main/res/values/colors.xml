@@ -27,7 +27,7 @@
     <!--透明-->
     <color name="main_transparent">#00000000</color>
     <color name="dividerLineColor">#dbdbdb</color>
-    <color name="white_50">#50ffffff</color>
+    <color name="white_50">#88ffffff</color>
     <color name="text_color_888888">#888888</color>
     <color name="text_color_999999">#999999</color>
     <color name="text_color_808080">#808080</color>

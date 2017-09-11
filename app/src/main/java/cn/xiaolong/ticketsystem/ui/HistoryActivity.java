@@ -65,7 +65,6 @@ public class HistoryActivity extends BaseTitleBarActivity {
     protected void init() {
         if (mTicketType != null) {
             tvTitle.setText(mTicketType.descr);
-
             recycleListView = new RecycleListViewImpl(true, true, false);
             RelativeLayout rlContent = findView(R.id.rlContent);
             LoadingPage loadingPage = new LoadingPage(this, Scene.DEFAULT);

@@ -61,11 +61,11 @@ public class LoadingHelp {
         ivLoadImg.setImageResource(loadResource.getImage());
         tvLoadMsg.setText(loadResource.getErrorText());
         tvLoadHint.setText(loadResource.getErrorHint());
-//        btnLoadRefresh.setOnClickListener(v -> {
-//            if (onFailClickListener != null) {
-//                onFailClickListener.onFailClick(failCode);
-//            }
-//        });
+        tvLoadHint.setOnClickListener(v -> {
+            if (onFailClickListener != null) {
+                onFailClickListener.onFailClick(failCode);
+            }
+        });
     }
 
     public View getRootView() {
