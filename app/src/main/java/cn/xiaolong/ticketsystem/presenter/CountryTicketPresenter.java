@@ -5,6 +5,7 @@ import android.app.Activity;
 import cn.xiaolong.ticketsystem.api.DataManager;
 import cn.xiaolong.ticketsystem.base.BasePresenter;
 import cn.xiaolong.ticketsystem.presenter.view.IOpenResultView;
+import cn.xiaolong.ticketsystem.presenter.view.ITicketListView;
 
 /**
  * @author xiaolong
@@ -13,14 +14,15 @@ import cn.xiaolong.ticketsystem.presenter.view.IOpenResultView;
  * @date: 2017/09/11 11:10:50
  */
 
-public class CountryTicketPresenter extends BasePresenter<IOpenResultView> {
-    public CountryTicketPresenter(Activity activity) {
-        super(activity);
+public class CountryTicketPresenter extends BasePresenter<ITicketListView> {
+
+    public CountryTicketPresenter(ITicketListView view, Activity activity) {
+        super(view, activity);
     }
 
-    public void getSingleOpenResult(String code, String issue) {
-        addSubscribe(DataManager.getTicketList().subscribe(getSubscriber(ticketOpenDataTicketInfo ->
-                mView.getSingleOpenResultSuccess(ticketOpenDataTicketInfo.list.get(0))
+    public void getTicketList() {
+        addSubscribe(DataManager.getTicketList().subscribe(getSubscriber(ticketTypeListData ->
+                mView.onGetTicketListSuccess(ticketTypeListData)
         )));
     }
 }

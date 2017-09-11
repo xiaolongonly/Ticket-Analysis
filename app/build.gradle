@@ -15,14 +15,14 @@ android {
         minSdkVersion 16
         targetSdkVersion 25
 
-        buildConfigField("String","TICKET_SECRET", TICKET_SECRET)
-        buildConfigField("String","TICKET_APP_ID", TICKET_APP_ID)
+        buildConfigField("String", "TICKET_SECRET", TICKET_SECRET)
+        buildConfigField("String", "TICKET_APP_ID", TICKET_APP_ID)
         buildConfigField("int", "TIME_CLICK_IGNORE", TIME_CLICK_IGNORE)
         buildConfigField("String", "HOST_URL", HOST_URL)
         //sp常量
         buildConfigField("String", "KEY_APP_INFO", KEY_APP_INFO)
         buildConfigField("String", "KEY_USER_RECORD", KEY_USER_RECORD)
-
+        buildConfigField("String", "KEY_MY_FOLLOW", KEY_MY_FOLLOW)
         ndk {
             //设置支持的SO库架构
             abiFilters 'armeabi', 'x86', 'armeabi-v7a'

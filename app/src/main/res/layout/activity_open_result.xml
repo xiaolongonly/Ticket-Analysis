@@ -14,8 +14,8 @@
 
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:padding="30px"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="30px">
 
             <TextView
                 android:id="@+id/tvOpenSerial"
@@ -57,7 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?selectableItemBackground"
-            android:drawableRight="@mipmap/ic_narrow_right"
+            android:drawableRight="@drawable/ic_narrow_right"
             android:gravity="center"
             android:padding="20px"
             android:text="查看历史开奖结果"

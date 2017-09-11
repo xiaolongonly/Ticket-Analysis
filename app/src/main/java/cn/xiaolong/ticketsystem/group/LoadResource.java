@@ -6,7 +6,6 @@ import com.standards.library.app.AppContext;
 /**
  * <加载页对应View的数据>
  *
- * @data: 2016/1/4 ic_bright:bg_account_disable
  * @version: V1.0
  */
 public class LoadResource {

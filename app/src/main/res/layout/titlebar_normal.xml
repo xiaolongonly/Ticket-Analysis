@@ -9,7 +9,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="23px" />
+        android:layout_centerVertical="true"
+        android:layout_marginRight="32px" />
 
 
     <TextView
@@ -20,16 +21,15 @@
         android:ellipsize="end"
         android:gravity="center"
         android:maxLines="1"
-        android:text="wangwang"
         android:textColor="@color/white"
         android:textSize="46px" />
 
     <com.standards.library.widget.ClickImageView
         android:id="@+id/title_left"
-        android:layout_width="26px"
-        android:layout_height="42px"
-        android:layout_alignParentTop="true"
-        android:paddingLeft="23px"
-        android:paddingRight="34px"
-        android:src="@mipmap/ic_titlebar_narrow_left" />
+        android:layout_width="32px"
+        android:layout_height="48px"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="32px"
+        android:src="@drawable/ic_titlebar_narrow_left" />
 </RelativeLayout>

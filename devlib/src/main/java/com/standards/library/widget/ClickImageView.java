@@ -15,7 +15,7 @@ import com.standards.library.R;
  * 有滤镜效果的TextView（点击自带背景色）
  */
 
-public class ClickImageView extends android.support.v7.widget.AppCompatImageView {
+public class ClickImageView extends ImageView {
     private boolean isTouchOutside;
 
     public ClickImageView(Context context) {

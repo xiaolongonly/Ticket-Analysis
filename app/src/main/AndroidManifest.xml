@@ -22,6 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".ui.FollowAddActivity" />
         <activity android:name=".ui.AverageActivity" />
         <activity android:name=".ui.OpenResultActivity" />
         <activity

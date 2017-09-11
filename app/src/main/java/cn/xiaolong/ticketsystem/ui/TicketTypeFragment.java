@@ -28,17 +28,15 @@ import cn.xiaolong.ticketsystem.utils.LaunchUtil;
  * @function <发现页普通页面>
  * @date 2016/8/9-14:10
  */
-public class MyFollowFragment extends BaseFuncFragment {
+public class TicketTypeFragment extends BaseFuncFragment {
     private TicketTypeAdapter ticketTypeAdapter;
     private ListGroupPresenter presenter;
     private BaseGroupListManager manager;
     private RecycleListViewImpl recycleListView;
-
-
     private TicketTypeEnum mTicketTypeEnum;
 
-    public static MyFollowFragment getNewInstance(TicketTypeEnum ticketTypeEnum) {
-        MyFollowFragment fragment = new MyFollowFragment();
+    public static TicketTypeFragment getNewInstance(TicketTypeEnum ticketTypeEnum) {
+        TicketTypeFragment fragment = new TicketTypeFragment();
         Bundle bundle = new Bundle();
         bundle.putSerializable("ticketListType", ticketTypeEnum);
         fragment.setArguments(bundle);
@@ -52,17 +50,16 @@ public class MyFollowFragment extends BaseFuncFragment {
         }
     }
 
-
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_my_follow;
+        return R.layout.fragment_ticket_type;
     }
 
     @Override
     public void init() {
         recycleListView = new RecycleListViewImpl(true, false, false);
         RelativeLayout rlContent = findView(R.id.rlContent);
-        LoadingPage loadingPage = new LoadingPage(getActivity(), Scene.TICKET_FAVORITE);
+        LoadingPage loadingPage = new LoadingPage(getActivity(), Scene.DEFAULT);
         ticketTypeAdapter = new TicketTypeAdapter(getActivity());
         manager = new TicketTypeManager(mTicketTypeEnum);
         presenter = ListGroupPresenter.create(getActivity(), recycleListView, manager, ticketTypeAdapter, loadingPage);
@@ -73,11 +70,9 @@ public class MyFollowFragment extends BaseFuncFragment {
 
     @Override
     public void setListener() {
-        ClickView(findView(R.id.tvAdd)).subscribe(o -> LaunchUtil.launchActivity(getActivity(), FollowAddActivity.class));
         ticketTypeAdapter.setOnItemClickListener(view ->
                 LaunchUtil.launchActivity(getActivity(), OpenResultActivity.class,
                         OpenResultActivity.buildBundle((TicketType) view.getTag())));
     }
-
 
 }

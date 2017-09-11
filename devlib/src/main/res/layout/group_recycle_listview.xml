@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.standards.library.listview.listview.head.CommonRefreshLayout
-    android:id="@+id/refreshLayout"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.standards.library.listview.listview.head.CommonRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/refreshLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     cube_ptr:ptr_duration_to_close="300"
@@ -16,5 +15,5 @@
         android:id="@+id/my_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical"/>
+        android:scrollbars="none" />
 </com.standards.library.listview.listview.head.CommonRefreshLayout>

@@ -27,7 +27,6 @@ public class BaseTitleBar {
         this.toolView = toolView;
         toolView.setPadding(0, 0, 0, 0);
         ViewGroup toolLayout = (ViewGroup) LayoutInflater.from(context).inflate(layoutId, toolView, false);
-//        toolView.removeAllViews();
         toolView.addView(toolLayout, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         initTitleBar(toolLayout);
     }
