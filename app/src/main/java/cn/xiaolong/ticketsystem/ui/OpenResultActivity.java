@@ -5,6 +5,7 @@ import android.widget.TextView;
 
 
 import com.standards.library.util.DateUtils;
+import com.standards.library.util.TimeUtils;
 
 import cn.xiaolong.ticketsystem.R;
 import cn.xiaolong.ticketsystem.base.BaseTitleBar;
@@ -98,7 +99,7 @@ public class OpenResultActivity extends BaseTitleBarActivity<OpenResultPresenter
     @Override
     public void getSingleOpenResultSuccess(TicketOpenData ticketOpenData) {
         tvOpenResult.setText(ticketOpenData.openCode);
-        tvOpenTime.setText("开奖日期：" + DateUtils.timeStampToYYDDMM(ticketOpenData.timestamp * 1000));
+        tvOpenTime.setText("开奖日期：" + TimeUtils.milliseconds2String(ticketOpenData.timestamp * 1000));
         tvOpenSerial.setText("第" + ticketOpenData.expect + "期");
     }
 }

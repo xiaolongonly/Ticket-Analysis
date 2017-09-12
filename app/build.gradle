@@ -89,6 +89,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile project(':devlib')
     compile 'com.android.support:appcompat-v7:25.0.0'
+    compile project(':MPChartLib')
 }
 
 tasks.withType(JavaCompile) {

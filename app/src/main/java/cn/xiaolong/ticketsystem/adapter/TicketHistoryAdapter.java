@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.standards.library.listview.adapter.LoadMoreRecycleAdapter;
 import com.standards.library.util.DateUtils;
+import com.standards.library.util.TimeUtils;
 
 import cn.xiaolong.ticketsystem.R;
 import cn.xiaolong.ticketsystem.bean.TicketOpenData;
@@ -53,7 +54,7 @@ public class TicketHistoryAdapter extends LoadMoreRecycleAdapter<TicketOpenData,
 
         public void setData(TicketOpenData ticketOpenData, int realPosition) {
             tvOpenResult.setText(ticketOpenData.openCode);
-            tvOpenTime.setText("开奖日期：" + DateUtils.timeStampToYYDDMM(ticketOpenData.timestamp * 1000));
+            tvOpenTime.setText("开奖日期：" + TimeUtils.milliseconds2String(ticketOpenData.timestamp * 1000));
             tvOpenSerial.setText("第" + ticketOpenData.expect + "期");
 
             itemView.setOnClickListener(v -> {
