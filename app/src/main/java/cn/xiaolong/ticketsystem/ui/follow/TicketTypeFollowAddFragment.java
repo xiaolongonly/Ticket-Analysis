@@ -1,4 +1,4 @@
-package cn.xiaolong.ticketsystem.ui;
+package cn.xiaolong.ticketsystem.ui.follow;
 
 
 import android.os.Bundle;
@@ -14,17 +14,19 @@ import com.standards.library.model.Event;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.xiaolong.ticketsystem.R;
-import cn.xiaolong.ticketsystem.adapter.TicketTypeAdapter;
+import cn.xiaolong.ticketsystem.adapter.TicketTypeFollowAdapter;
 import cn.xiaolong.ticketsystem.base.BaseFuncFragment;
 import cn.xiaolong.ticketsystem.bean.TicketType;
+import cn.xiaolong.ticketsystem.bean.event.FollowDataChangeEvent;
 import cn.xiaolong.ticketsystem.bean.type.TicketTypeEnum;
 import cn.xiaolong.ticketsystem.group.LoadingPage;
 import cn.xiaolong.ticketsystem.group.Scene;
 import cn.xiaolong.ticketsystem.manager.TicketTypeManager;
-import cn.xiaolong.ticketsystem.ui.follow.FollowAddActivity;
+import cn.xiaolong.ticketsystem.ui.OpenResultActivity;
 import cn.xiaolong.ticketsystem.ui.widget.RecycleViewDivider;
 import cn.xiaolong.ticketsystem.utils.LaunchUtil;
 
@@ -32,69 +34,68 @@ import cn.xiaolong.ticketsystem.utils.LaunchUtil;
 /**
  * @author xiaolong
  * @version v1.0
- * @function <我的关注>
- * @date 2017年9月12日 14:55:21
+ * @function <三个可供选择的彩票种类关注Fragment>
+ * @date 2016/8/9-14:10
  */
-public class MyFollowFragment extends BaseFuncFragment {
-    private TicketTypeAdapter ticketTypeAdapter;
+public class TicketTypeFollowAddFragment extends BaseFuncFragment {
+    private TicketTypeFollowAdapter ticketTypeAdapter;
     private ListGroupPresenter presenter;
     private BaseGroupListManager manager;
     private RecycleListViewImpl recycleListView;
-
-
     private TicketTypeEnum mTicketTypeEnum;
+    private List<TicketType> mTicketTypes;
 
-    public static MyFollowFragment getNewInstance(TicketTypeEnum ticketTypeEnum) {
-        MyFollowFragment fragment = new MyFollowFragment();
+    public static TicketTypeFollowAddFragment getNewInstance(TicketTypeEnum ticketTypeEnum, ArrayList<TicketType> ticketTypes) {
+        TicketTypeFollowAddFragment fragment = new TicketTypeFollowAddFragment();
         Bundle bundle = new Bundle();
         bundle.putSerializable("ticketListType", ticketTypeEnum);
+        bundle.putSerializable("ticketTypes", ticketTypes);
         fragment.setArguments(bundle);
         return fragment;
     }
 
     @Override
     public void getExtra() {
+        EventBus.getDefault().register(this);
         if (getArguments() != null) {
             mTicketTypeEnum = (TicketTypeEnum) getArguments().getSerializable("ticketListType");
+            mTicketTypes = (List<TicketType>) getArguments().getSerializable("ticketTypes");
         }
     }
 
-
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_my_follow;
+        return R.layout.fragment_ticket_type;
     }
 
     @Override
     public void init() {
-        EventBus.getDefault().register(this);
         recycleListView = new RecycleListViewImpl(true, false, false);
         RelativeLayout rlContent = findView(R.id.rlContent);
-        LoadingPage loadingPage = new LoadingPage(getActivity(), Scene.TICKET_FAVORITE);
-        ticketTypeAdapter = new TicketTypeAdapter(getActivity());
+        LoadingPage loadingPage = new LoadingPage(getActivity(), Scene.DEFAULT);
+        ticketTypeAdapter = new TicketTypeFollowAdapter(getActivity(), mTicketTypes);
         manager = new TicketTypeManager(mTicketTypeEnum);
         presenter = ListGroupPresenter.create(getActivity(), recycleListView, manager, ticketTypeAdapter, loadingPage);
         recycleListView.getRecyclerView().addItemDecoration(new RecycleViewDivider(getActivity(),
-                LinearLayoutManager.HORIZONTAL, 2, getResources().getColor(R.color.main_divider_color)));
+                LinearLayoutManager.HORIZONTAL, 1, getResources().getColor(R.color.main_divider_color)));
         rlContent.addView(presenter.getRootView(), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
     }
 
     @Override
     public void setListener() {
-        ClickView(findView(R.id.tvAdd)).subscribe(o -> LaunchUtil.launchActivity(getActivity(), FollowAddActivity.class));
         ticketTypeAdapter.setOnItemClickListener(view ->
                 LaunchUtil.launchActivity(getActivity(), OpenResultActivity.class,
                         OpenResultActivity.buildBundle((TicketType) view.getTag())));
+    }
+
+    @Subscribe
+    public void refresh(FollowDataChangeEvent event) {
+        ticketTypeAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void onDestroy() {
         EventBus.getDefault().unregister(this);
         super.onDestroy();
-    }
-
-    @Subscribe
-    public void refreshData(Event event) {
-        ticketTypeAdapter.setItems((List<TicketType>) event.data);
     }
 }

@@ -1,5 +1,7 @@
 package cn.xiaolong.ticketsystem.bean;
 
+import android.support.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 import com.standards.library.model.BaseInfo;
 
@@ -10,7 +12,7 @@ import com.standards.library.model.BaseInfo;
  * @date: 2017/9/7 18:02
  */
 
-public class TicketType extends BaseInfo {
+public class TicketType extends BaseInfo implements Comparable<TicketType> {
     @SerializedName("series")
     public String series; //彩票类型列表
     @SerializedName("area")
@@ -29,4 +31,10 @@ public class TicketType extends BaseInfo {
     public String notes; //彩票描述
     @SerializedName("descr")
     public String descr; //彩票名字
+
+
+    @Override
+    public int compareTo(@NonNull TicketType o) {
+        return area.compareTo(o.area);
+    }
 }

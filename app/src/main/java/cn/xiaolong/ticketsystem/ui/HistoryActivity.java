@@ -9,6 +9,10 @@ import android.widget.TextView;
 import com.standards.library.listview.ListGroupPresenter;
 import com.standards.library.listview.listview.RecycleListViewImpl;
 import com.standards.library.listview.manager.BaseGroupListManager;
+import com.standards.library.model.Event;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import cn.xiaolong.ticketsystem.R;
 import cn.xiaolong.ticketsystem.adapter.TicketHistoryAdapter;
@@ -80,5 +84,12 @@ public class HistoryActivity extends BaseTitleBarActivity {
     @Override
     protected void setListener() {
 
+    }
+
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

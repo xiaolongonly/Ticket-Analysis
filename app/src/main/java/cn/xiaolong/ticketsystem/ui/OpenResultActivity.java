@@ -18,7 +18,7 @@ import cn.xiaolong.ticketsystem.utils.LaunchUtil;
 /**
  * @author xiaolong
  * @version v1.0
- * @function <描述功能>
+ * @function <开奖结果>
  * @date: 2017/9/8 14:32
  */
 

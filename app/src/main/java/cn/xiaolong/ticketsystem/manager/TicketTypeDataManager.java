@@ -7,6 +7,7 @@ import com.google.gson.reflect.TypeToken;
 import com.standards.library.cache.SPHelp;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import cn.xiaolong.ticketsystem.BuildConfig;
@@ -79,6 +80,7 @@ public class TicketTypeDataManager {
                                     areaTypeList.add(ticketType);
                                 }
                             }
+                            Collections.sort(areaTypeList);
                             return Observable.just(areaTypeList);
                         }).doOnNext(ticketTypes -> mAreaTypeData = ticketTypes) : Observable.just(mAreaTypeData);
     }
@@ -98,6 +100,7 @@ public class TicketTypeDataManager {
                                     highTypeList.add(ticketType);
                                 }
                             }
+                            Collections.sort(highTypeList);
                             return Observable.just(highTypeList);
                         }).doOnNext(ticketTypes -> mHighRateTypeData = ticketTypes) : Observable.just(mHighRateTypeData);
     }
@@ -117,6 +120,7 @@ public class TicketTypeDataManager {
                                     outTypeList.add(ticketType);
                                 }
                             }
+                            Collections.sort(outTypeList);
                             return Observable.just(outTypeList);
                         })
                         .doOnNext(ticketTypes -> mOutTypeData = ticketTypes) : Observable.just(mOutTypeData);
@@ -131,8 +135,13 @@ public class TicketTypeDataManager {
         return mAllTypeData == null ?
                 DataManager
                         .getTicketList()
-                        .doOnNext(ticketTypeListData -> mAllTypeData = ticketTypeListData.list)
-                        .flatMap(ticketTypeListData -> Observable.just(ticketTypeListData.list))
+                        .flatMap(ticketTypeListData -> {
+                            Collections.sort(ticketTypeListData.list);
+                            return Observable.just(ticketTypeListData.list);
+                        })
+                        .doOnNext(allData -> mAllTypeData = allData)
+                        .flatMap(allData -> Observable.just(allData)
+                        )
                 : Observable.just(mAllTypeData);
     }
 
@@ -145,13 +154,14 @@ public class TicketTypeDataManager {
         return mCountryTypeData == null ?
                 getAllData()
                         .flatMap(ticketTypes -> {
-                            List<TicketType> outTypeList = new ArrayList<TicketType>();
+                            List<TicketType> countryTypeList = new ArrayList<TicketType>();
                             for (TicketType ticketType : ticketTypes) {
                                 if (ticketType.area.equals("") && !ticketType.issuer.equals("境外")) {
-                                    outTypeList.add(ticketType);
+                                    countryTypeList.add(ticketType);
                                 }
                             }
-                            return Observable.just(outTypeList);
+                            Collections.sort(countryTypeList);
+                            return Observable.just(countryTypeList);
                         }).doOnNext(ticketTypes -> mCountryTypeData = ticketTypes) : Observable.just(mCountryTypeData);
     }
 

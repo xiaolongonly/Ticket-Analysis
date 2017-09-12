@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.standards.library.listview.adapter.LoadMoreRecycleAdapter;
@@ -43,18 +44,25 @@ public class TicketTypeAdapter extends LoadMoreRecycleAdapter<TicketType, Ticket
         private TextView tvNode;
         private TextView tvTicketName;
         private TextView tvArea;
+        private RelativeLayout rlArea;
 
         public ViewHolder(View itemView) {
             super(itemView);
             tvNode = (TextView) itemView.findViewById(R.id.tvNote);
             tvTicketName = (TextView) itemView.findViewById(R.id.tvTicketName);
             tvArea = (TextView) itemView.findViewById(R.id.tvArea);
+            rlArea = (RelativeLayout) itemView.findViewById(R.id.rlArea);
         }
 
         public void setData(TicketType typeInfo, int realPosition) {
             tvNode.setText(typeInfo.notes);
             tvTicketName.setText(typeInfo.descr);
-            tvArea.setText(typeInfo.area.equals("") ? "全国" : typeInfo.area);
+            if (realPosition > 0 && mData.get(realPosition - 1).area.equals(typeInfo.area)) {
+                rlArea.setVisibility(View.GONE);
+            } else {
+                rlArea.setVisibility(View.VISIBLE);
+                tvArea.setText(typeInfo.area.equals("") ? "全国" : typeInfo.area);
+            }
 
             itemView.findViewById(R.id.rlBottom).setOnClickListener(v -> {
                 if (mOnItemClickListener != null) {

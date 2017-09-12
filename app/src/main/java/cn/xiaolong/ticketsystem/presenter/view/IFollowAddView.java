@@ -2,6 +2,8 @@ package cn.xiaolong.ticketsystem.presenter.view;
 
 import com.standards.library.model.ListData;
 
+import java.util.List;
+
 import cn.xiaolong.ticketsystem.base.ILoadingView;
 import cn.xiaolong.ticketsystem.bean.TicketType;
 
@@ -12,6 +14,6 @@ import cn.xiaolong.ticketsystem.bean.TicketType;
  * @date: 2017/9/11 11:17
  */
 
-public interface ITicketListView extends ILoadingView {
-    void onGetTicketListSuccess(ListData<TicketType> ticketTypeListData);
+public interface IFollowAddView extends ILoadingView {
+    void onGetTicketListSuccess(List<TicketType> ticketTypeList);
 }

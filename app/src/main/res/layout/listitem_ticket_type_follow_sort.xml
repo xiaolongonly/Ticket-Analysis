@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rlBottom"
+        android:layout_width="match_parent"
+        android:layout_height="120px"
+        android:background="?selectableItemBackground"
+        android:paddingLeft="40px"
+        android:paddingRight="40px">
+
+
+        <TextView
+            android:id="@+id/tvTicketName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="福建体彩36选7"
+            android:textColor="@color/main_normal_black_color"
+            android:textSize="52px" />
+
+        <!--很多地方，其实是可以用TextView的drawableLeft更好，
+        这里因为我们只有一套的切图
+        为了做到适配没有采用这样的方法-->
+        <RelativeLayout
+            android:id="@+id/rlFollow"
+            android:layout_width="200px"
+            android:layout_height="80px"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/select_ticket_type_back_follow"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/ivLeft"
+                android:layout_width="42px"
+                android:layout_height="42px"
+                android:src="@drawable/select_ticket_type_follow" />
+
+            <TextView
+                android:id="@+id/tvFollow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8px"
+                android:layout_toRightOf="@+id/ivLeft"
+                android:text="关注"
+                android:textColor="@drawable/select_ticket_text_follow"
+                android:textSize="38px" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

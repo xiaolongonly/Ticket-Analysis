@@ -23,7 +23,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.FollowAddActivity" />
+        <activity android:name=".ui.follow.FollowAddActivity" />
+        <activity android:name=".ui.follow.FollowSortActivity" />
         <activity android:name=".ui.AverageActivity" />
         <activity android:name=".ui.OpenResultActivity" />
         <activity
