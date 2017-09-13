@@ -36,17 +36,11 @@
                 android:textSize="44px" />
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/tvOpenResult"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvOpenResult"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="120px"
-            android:layout_marginRight="120px"
-            android:layout_marginTop="40px"
-            android:gravity="center_horizontal"
-            android:text="10086"
-            android:textColor="@color/main_normal_black_color"
-            android:textSize="80px" />
+            android:padding="30px" />
 
         <View
             style="@style/divider_horizontal"
@@ -65,5 +59,133 @@
             android:textSize="44px" />
 
         <View style="@style/divider_horizontal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30px"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="88px"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvAvgAnalysis"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_margin="8px"
+                android:layout_weight="1"
+                android:background="@drawable/corner16_red"
+                android:gravity="center"
+                android:text="均值分析"
+                android:textColor="@color/white"
+                android:textSize="46px" />
+
+            <TextView
+                android:id="@+id/tvSumAnalysis"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_margin="8px"
+                android:layout_weight="1"
+                android:background="@drawable/corner16_red"
+                android:gravity="center"
+                android:text="和值分析"
+                android:textColor="@color/white"
+                android:textSize="46px" />
+
+            <TextView
+                android:id="@+id/tvNumRate"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_margin="8px"
+                android:layout_weight="1"
+                android:background="@drawable/corner16_red"
+                android:gravity="center"
+                android:text="号码频率"
+                android:textColor="@color/white"
+                android:textSize="46px" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="88px"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvRandomNum"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_margin="8px"
+                android:layout_weight="1"
+                android:background="@drawable/corner16_red"
+                android:gravity="center"
+                android:text="随机摇号"
+                android:textColor="@color/white"
+                android:textSize="46px" />
+
+            <TextView
+                android:id="@+id/tvNumberForecast"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_margin="8px"
+                android:layout_weight="1"
+                android:background="@drawable/corner16_red"
+                android:gravity="center"
+                android:text="号码预测"
+                android:textColor="@color/white"
+                android:textSize="46px" />
+
+            <TextView
+                android:id="@+id/tvAvgSimulate"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_margin="8px"
+                android:layout_weight="1"
+                android:background="@drawable/corner16_red"
+                android:gravity="center"
+                android:text="均值演算"
+                android:textColor="@color/white"
+                android:textSize="46px" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="88px"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvParityTrend"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_margin="8px"
+                android:layout_weight="1"
+                android:background="@drawable/corner16_red"
+                android:gravity="center"
+                android:text="奇偶趋势"
+                android:textColor="@color/white"
+                android:textSize="46px" />
+
+            <TextView
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_margin="8px"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="46px" />
+
+            <TextView
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_margin="8px"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="46px" />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

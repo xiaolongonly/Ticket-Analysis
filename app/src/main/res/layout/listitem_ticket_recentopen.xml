@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cn.xiaolong.ticketsystem.ui.widget.FocuseRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlBottom"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?selectableItemBackground"
+    android:descendantFocusability="blocksDescendants"
+    android:paddingBottom="30px"
+    android:paddingLeft="40px"
+    android:paddingRight="40px"
+    android:paddingTop="30px">
+
+
+    <TextView
+        android:id="@+id/tvTicketName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/main_normal_black_color"
+        android:textSize="52px" />
+
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16px"
+        android:layout_marginTop="8px"
+        android:layout_toRightOf="@id/tvTicketName"
+        android:textColor="@color/main_normal_black_color"
+        android:textSize="38px" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvOpenResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvTicketName"
+        android:padding="30px" />
+
+    <TextView
+        android:id="@+id/tvOpenTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rvOpenResult"
+        android:layout_marginTop="20px"
+        android:textColor="@color/main_hint_color"
+        android:textSize="36px" />
+
+    <ImageView
+        android:layout_width="26px"
+        android:layout_height="50px"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="8px"
+        android:src="@drawable/ic_narrow_right" />
+
+</cn.xiaolong.ticketsystem.ui.widget.FocuseRelativeLayout>

@@ -31,16 +31,9 @@
             android:textSize="44px" />
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/tvOpenResult"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvOpenResult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40px"
-        android:layout_marginLeft="120px"
-        android:layout_marginRight="120px"
-        android:layout_marginTop="40px"
-        android:gravity="center_horizontal"
-        android:text="10086"
-        android:textColor="@color/main_normal_black_color"
-        android:textSize="80px" />
+        android:padding="30px" />
 </LinearLayout>

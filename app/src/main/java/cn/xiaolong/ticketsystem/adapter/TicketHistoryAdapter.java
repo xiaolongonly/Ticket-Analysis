@@ -1,6 +1,7 @@
 package cn.xiaolong.ticketsystem.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,20 +44,22 @@ public class TicketHistoryAdapter extends LoadMoreRecycleAdapter<TicketOpenData,
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView tvOpenSerial;
         private TextView tvOpenTime;
-        private TextView tvOpenResult;
+        private RecyclerView rvOpenResult;
 
         public ViewHolder(View itemView) {
             super(itemView);
             tvOpenSerial = (TextView) itemView.findViewById(R.id.tvOpenSerial);
             tvOpenTime = (TextView) itemView.findViewById(R.id.tvOpenTime);
-            tvOpenResult = (TextView) itemView.findViewById(R.id.tvOpenResult);
+            rvOpenResult = (RecyclerView) itemView.findViewById(R.id.rvOpenResult);
         }
 
         public void setData(TicketOpenData ticketOpenData, int realPosition) {
-            tvOpenResult.setText(ticketOpenData.openCode);
             tvOpenTime.setText("开奖日期：" + TimeUtils.milliseconds2String(ticketOpenData.timestamp * 1000));
             tvOpenSerial.setText("第" + ticketOpenData.expect + "期");
 
+            OpenCodeAdapter openCodeAdapter = new OpenCodeAdapter(mContext, ticketOpenData.openCode);
+            rvOpenResult.setLayoutManager(new GridLayoutManager(mContext, 7));
+            rvOpenResult.setAdapter(openCodeAdapter);
             itemView.setOnClickListener(v -> {
                 if (mOnItemClickListener != null) {
                     v.setTag(ticketOpenData);

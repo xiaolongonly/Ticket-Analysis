@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <com.standards.library.widget.ClickTextView
         android:id="@+id/tvAdd"
@@ -18,5 +17,19 @@
     <RelativeLayout
         android:id="@+id/rlContent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-</LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvAdd"
+        android:background="@color/white" />
+
+    <ImageView
+        android:id="@+id/ivHint"
+        android:layout_width="80px"
+        android:layout_height="80px"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="46px"
+        android:layout_marginRight="46px"
+        android:scaleType="fitCenter"
+        android:src="@android:drawable/ic_dialog_info"
+        android:tint="@color/main_red_color" />
+</RelativeLayout>

@@ -1,6 +1,8 @@
 package cn.xiaolong.ticketsystem.ui;
 
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
 
@@ -8,6 +10,7 @@ import com.standards.library.util.DateUtils;
 import com.standards.library.util.TimeUtils;
 
 import cn.xiaolong.ticketsystem.R;
+import cn.xiaolong.ticketsystem.adapter.OpenCodeAdapter;
 import cn.xiaolong.ticketsystem.base.BaseTitleBar;
 import cn.xiaolong.ticketsystem.base.BaseTitleBarActivity;
 import cn.xiaolong.ticketsystem.bean.TicketOpenData;
@@ -25,12 +28,12 @@ import cn.xiaolong.ticketsystem.utils.LaunchUtil;
 
 public class OpenResultActivity extends BaseTitleBarActivity<OpenResultPresenter> implements IOpenResultView {
     private TextView tvTitle;
-    private TextView tvOpenResult;
     private TextView tvOpenSerial;
     private TextView tvOpenTime;
     private TextView tvHistory;
     private TicketType mTicketType;
     private TicketOpenData mTicketOpenData;
+    private RecyclerView rvOpenResult;
 
     @Override
     public OpenResultPresenter getPresenter() {
@@ -68,7 +71,7 @@ public class OpenResultActivity extends BaseTitleBarActivity<OpenResultPresenter
 
     @Override
     protected void init() {
-        tvOpenResult = findView(R.id.tvOpenResult);
+        rvOpenResult = findView(R.id.rvOpenResult);
         tvOpenSerial = findView(R.id.tvOpenSerial);
         tvOpenTime = findView(R.id.tvOpenTime);
         tvHistory = findView(R.id.tvHistory);
@@ -81,6 +84,7 @@ public class OpenResultActivity extends BaseTitleBarActivity<OpenResultPresenter
             tvTitle.setText(mTicketOpenData.name);
             mPresenter.getSingleOpenResult(mTicketType.code, mTicketOpenData.expect);
         }
+
     }
 
     @Override
@@ -98,7 +102,9 @@ public class OpenResultActivity extends BaseTitleBarActivity<OpenResultPresenter
 
     @Override
     public void getSingleOpenResultSuccess(TicketOpenData ticketOpenData) {
-        tvOpenResult.setText(ticketOpenData.openCode);
+        OpenCodeAdapter openCodeAdapter = new OpenCodeAdapter(this, ticketOpenData.openCode);
+        rvOpenResult.setLayoutManager(new GridLayoutManager(this, 7));
+        rvOpenResult.setAdapter(openCodeAdapter);
         tvOpenTime.setText("开奖日期：" + TimeUtils.milliseconds2String(ticketOpenData.timestamp * 1000));
         tvOpenSerial.setText("第" + ticketOpenData.expect + "期");
     }

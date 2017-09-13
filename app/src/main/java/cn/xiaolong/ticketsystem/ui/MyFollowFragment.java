@@ -10,6 +10,7 @@ import com.standards.library.listview.ListGroupPresenter;
 import com.standards.library.listview.listview.RecycleListViewImpl;
 import com.standards.library.listview.manager.BaseGroupListManager;
 import com.standards.library.model.Event;
+import com.standards.library.util.ToastUtil;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -17,6 +18,7 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.List;
 
 import cn.xiaolong.ticketsystem.R;
+import cn.xiaolong.ticketsystem.adapter.TicketRecentOpenAdapter;
 import cn.xiaolong.ticketsystem.adapter.TicketTypeAdapter;
 import cn.xiaolong.ticketsystem.base.BaseFuncFragment;
 import cn.xiaolong.ticketsystem.bean.TicketType;
@@ -36,7 +38,7 @@ import cn.xiaolong.ticketsystem.utils.LaunchUtil;
  * @date 2017年9月12日 14:55:21
  */
 public class MyFollowFragment extends BaseFuncFragment {
-    private TicketTypeAdapter ticketTypeAdapter;
+    private TicketRecentOpenAdapter ticketRecentOpenAdapter;
     private ListGroupPresenter presenter;
     private BaseGroupListManager manager;
     private RecycleListViewImpl recycleListView;
@@ -71,9 +73,9 @@ public class MyFollowFragment extends BaseFuncFragment {
         recycleListView = new RecycleListViewImpl(true, false, false);
         RelativeLayout rlContent = findView(R.id.rlContent);
         LoadingPage loadingPage = new LoadingPage(getActivity(), Scene.TICKET_FAVORITE);
-        ticketTypeAdapter = new TicketTypeAdapter(getActivity());
+        ticketRecentOpenAdapter = new TicketRecentOpenAdapter(getActivity());
         manager = new TicketTypeManager(mTicketTypeEnum);
-        presenter = ListGroupPresenter.create(getActivity(), recycleListView, manager, ticketTypeAdapter, loadingPage);
+        presenter = ListGroupPresenter.create(getActivity(), recycleListView, manager, ticketRecentOpenAdapter, loadingPage);
         recycleListView.getRecyclerView().addItemDecoration(new RecycleViewDivider(getActivity(),
                 LinearLayoutManager.HORIZONTAL, 2, getResources().getColor(R.color.main_divider_color)));
         rlContent.addView(presenter.getRootView(), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -82,9 +84,11 @@ public class MyFollowFragment extends BaseFuncFragment {
     @Override
     public void setListener() {
         ClickView(findView(R.id.tvAdd)).subscribe(o -> LaunchUtil.launchActivity(getActivity(), FollowAddActivity.class));
-        ticketTypeAdapter.setOnItemClickListener(view ->
+        ticketRecentOpenAdapter.setOnItemClickListener(view ->
                 LaunchUtil.launchActivity(getActivity(), OpenResultActivity.class,
                         OpenResultActivity.buildBundle((TicketType) view.getTag())));
+
+        ClickView(findView(R.id.ivHint)).subscribe(o -> ToastUtil.showToast("由于数据来源问题，开奖数据会有2-6分钟的延迟！"));
     }
 
     @Override
@@ -95,6 +99,7 @@ public class MyFollowFragment extends BaseFuncFragment {
 
     @Subscribe
     public void refreshData(Event event) {
-        ticketTypeAdapter.setItems((List<TicketType>) event.data);
+        ticketRecentOpenAdapter.setItems((List<TicketType>) event.data);
+        presenter.onRefresh();
     }
 }
