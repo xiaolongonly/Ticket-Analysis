@@ -89,6 +89,10 @@ public class MyFollowFragment extends BaseFuncFragment {
                         OpenResultActivity.buildBundle((TicketType) view.getTag())));
 
         ClickView(findView(R.id.ivHint)).subscribe(o -> ToastUtil.showToast("由于数据来源问题，开奖数据会有2-6分钟的延迟！"));
+        ClickView(findView(R.id.ivLocation))
+                .subscribe(o -> LaunchUtil.launchDefaultWeb(getActivity(),
+                        "http://map.baidu.com/mobile/webapp/search/search/qt=s&wd=%E5%BD%A9%E7%A5%A8&newmap=1&ie=utf-8&c=194/vt=map", ""));
+
     }
 
     @Override

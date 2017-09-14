@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Activity中如果对状态栏颜色进行了设置，又需要设置软键盘弹出页面上移 父布局需要加这句话android:fitsSystemWindows="true"-->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/webContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>

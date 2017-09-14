@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<cn.xiaolong.ticketsystem.ui.widget.FocuseRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="30px"
-
     android:background="?selectableItemBackground"
     android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/rlTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="30px">
@@ -35,5 +34,7 @@
         android:id="@+id/rvOpenResult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="30px" />
-</LinearLayout>
+        android:layout_below="@+id/rlTime"
+        android:layout_marginBottom="30px"
+        android:padding="15px" />
+</cn.xiaolong.ticketsystem.ui.widget.FocuseRelativeLayout>

@@ -10,10 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="120px"
         android:background="@color/white"
+        app:tabGravity="fill"
         app:tabIndicatorColor="@color/main_red_color"
         app:tabIndicatorHeight="6px"
-        app:tabMode="fixed"
         app:tabSelectedTextColor="@color/main_red_color"
+        app:tabTextAppearance="@style/MyTabLayoutTextAppearance"
         app:tabTextColor="#000000" />
 
     <!--<RelativeLayout-->

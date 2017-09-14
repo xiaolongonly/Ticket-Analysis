@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import cn.xiaolong.ticketsystem.base.BaseActivity;
+import cn.xiaolong.ticketsystem.ui.web.WebActivity;
+import cn.xiaolong.ticketsystem.ui.web.WebConfig;
 
 
 /**
@@ -34,6 +36,11 @@ public class LaunchUtil {
             context.startActivity(intent);
         }
         return true;
+    }
+
+    public static boolean launchDefaultWeb(Context context, String url, String title) {
+        WebConfig webConfig = new WebConfig(url, title, true);
+        return launchActivity(context, WebActivity.class, WebActivity.buildBundle(webConfig));
     }
 
 }

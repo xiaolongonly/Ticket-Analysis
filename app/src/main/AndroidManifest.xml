@@ -27,6 +27,8 @@
         <activity android:name=".ui.follow.FollowSortActivity" />
         <activity android:name=".ui.AverageActivity" />
         <activity android:name=".ui.OpenResultActivity" />
+        <activity android:name=".ui.trendanalysis.ParityTrendActivity" />
+        <activity android:name=".ui.web.WebActivity" />
         <activity
             android:name=".ui.HistoryActivity"
             android:launchMode="singleTask" />

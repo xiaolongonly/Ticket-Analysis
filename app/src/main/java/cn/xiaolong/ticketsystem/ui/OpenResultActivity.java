@@ -17,6 +17,7 @@ import cn.xiaolong.ticketsystem.bean.TicketOpenData;
 import cn.xiaolong.ticketsystem.bean.TicketType;
 import cn.xiaolong.ticketsystem.presenter.OpenResultPresenter;
 import cn.xiaolong.ticketsystem.presenter.view.IOpenResultView;
+import cn.xiaolong.ticketsystem.ui.trendanalysis.ParityTrendActivity;
 import cn.xiaolong.ticketsystem.utils.LaunchUtil;
 
 /**
@@ -75,7 +76,6 @@ public class OpenResultActivity extends BaseTitleBarActivity<OpenResultPresenter
         tvOpenSerial = findView(R.id.tvOpenSerial);
         tvOpenTime = findView(R.id.tvOpenTime);
         tvHistory = findView(R.id.tvHistory);
-
         if (mTicketType != null) {
             tvTitle.setText(mTicketType.descr);
             mPresenter.getSingleOpenResult(mTicketType.code, "");
@@ -84,7 +84,6 @@ public class OpenResultActivity extends BaseTitleBarActivity<OpenResultPresenter
             tvTitle.setText(mTicketOpenData.name);
             mPresenter.getSingleOpenResult(mTicketType.code, mTicketOpenData.expect);
         }
-
     }
 
     @Override
@@ -98,6 +97,12 @@ public class OpenResultActivity extends BaseTitleBarActivity<OpenResultPresenter
             }
 
         });
+        /**
+         * 奇偶趋势分析
+         */
+        ClickView(findView(R.id.tvParityTrend))
+                .subscribe(o -> LaunchUtil.launchActivity(this, ParityTrendActivity.class,
+                        ParityTrendActivity.buildBundle(mTicketType)));
     }
 
     @Override

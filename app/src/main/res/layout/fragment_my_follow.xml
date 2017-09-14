@@ -32,4 +32,19 @@
         android:scaleType="fitCenter"
         android:src="@android:drawable/ic_dialog_info"
         android:tint="@color/main_red_color" />
+
+    <ImageView
+        android:id="@+id/ivLocation"
+        android:layout_width="80px"
+        android:layout_height="80px"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="46px"
+        android:layout_marginLeft="46px"
+        android:paddingBottom="15px"
+        android:paddingLeft="20px"
+        android:paddingRight="20px"
+        android:paddingTop="15px"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_location"
+        android:tint="@color/main_red_color" />
 </RelativeLayout>
