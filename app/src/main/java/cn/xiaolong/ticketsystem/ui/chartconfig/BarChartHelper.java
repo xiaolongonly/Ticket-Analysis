@@ -12,6 +12,7 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.standards.library.app.AppContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,6 +60,8 @@ public class BarChartHelper {
         yAxisRight.setEnabled(false);
         YAxis yAxisLeft = barChart.getAxisLeft();
         yAxisLeft.setAxisMinimum(0);
+
+        barChart.setMarker(new DataMarkView(AppContext.getContext(), 2, ""));
         barChart.setDescription(null);
         barChart.setNoDataText("无数据");
         barChart.getLegend().setPosition(Legend.LegendPosition.ABOVE_CHART_CENTER);

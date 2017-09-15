@@ -96,7 +96,7 @@ public class AvgAnalysisActivity extends BaseTitleBarActivity<ParityTrendPresent
             bcAvgAnalysis.getData().notifyDataChanged();
             bcAvgAnalysis.notifyDataSetChanged();
         } else {
-            int codeLength = translateCodeToList(list.get(0).openCode).first.length + translateCodeToList(list.get(0).openCode).second.length;
+            int codeLength = translateCodeToList(list.get(0).openCode).first.length + translateCodeToList(list.get(0).openCode).second.length + 1;
             int divide = 255 / codeLength;
             List<Integer> colorList = new ArrayList<>();
             for (int i = 0; i < codeLength; i++) {
@@ -105,7 +105,13 @@ public class AvgAnalysisActivity extends BaseTitleBarActivity<ParityTrendPresent
             IBarDataSet barDataSet = BarChartHelper.getBarChartHelper().generateBarDataSet(generateEntry(list, codeLength), "均值图", colorList);
             barData = new BarData(barDataSet);
             bcAvgAnalysis.setData(barData);
-            bcAvgAnalysis.getXAxis().setValueFormatter((value, axis) -> "号码" + (1 + (int) value));
+            bcAvgAnalysis.getXAxis().setValueFormatter((value, axis) -> {
+                if (value == codeLength - 1) {
+                    return "和平均";
+                } else {
+                    return "号码" + (1 + (int) value);
+                }
+            });
 //            bcAvgAnalysis.getAxisLeft().setValueFormatter((value, axis) -> (value));
             bcAvgAnalysis.animateY(3000);
         }
@@ -127,9 +133,12 @@ public class AvgAnalysisActivity extends BaseTitleBarActivity<ParityTrendPresent
             }
         }
         List<BarEntry> barEntries = new ArrayList<>();
-        for (int i = 0; i < codeLength; i++) {
+        float count = 0;
+        for (int i = 0; i < codeLength - 1; i++) {
+            count += valuesCount[i] / list.size();
             barEntries.add(new BarEntry(i, valuesCount[i] / list.size()));
         }
+        barEntries.add(new BarEntry(codeLength - 1, count));
         return barEntries;
     }
 

@@ -29,6 +29,7 @@
         <activity android:name=".ui.OpenResultActivity" />
         <activity android:name=".ui.trendanalysis.ParityTrendActivity" />
         <activity android:name=".ui.trendanalysis.AvgAnalysisActivity" />
+        <activity android:name=".ui.trendanalysis.SumAnalysisActivity" />
         <activity android:name=".ui.web.WebActivity" />
         <activity
             android:name=".ui.HistoryActivity"
