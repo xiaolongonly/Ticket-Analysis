@@ -44,6 +44,8 @@ public class LineChartHelper {
         dataSet.setLineWidth(2.0f);
         dataSet.setCircleRadius(3.5f);
         dataSet.setDrawCircleHole(true);//填充圆
+        dataSet.setDrawValues(true);
+        dataSet.setValueTextColor(color);
         dataSet.setValueTextSize(9f);
         dataSet.setHighlightLineWidth(2.0f);
 //        dataSet.setDrawFilled(true);//区域颜色
@@ -58,6 +60,7 @@ public class LineChartHelper {
         return dataSet;
     }
 
+
     public LineChart generateLineChartConfig(LineChart lineChart) {
 
         //XY轴配置
@@ -69,15 +72,12 @@ public class LineChartHelper {
         yAxisRight.setEnabled(false);
         YAxis yAxisLeft = lineChart.getAxisLeft();
         yAxisLeft.setAxisMinimum(0);
-
         //背景设置
         lineChart.setDrawGridBackground(false);//表格背景绘制
         lineChart.setBackgroundColor(AppContext.getContext().getResources().getColor(R.color.white));
-
         //Legend定制
         lineChart.getLegend().setPosition(Legend.LegendPosition.ABOVE_CHART_LEFT);
         lineChart.getLegend().setForm(Legend.LegendForm.CIRCLE);//Legend样式
-
         //图表描述
         lineChart.setDescription(null);
         // 设置无数据文本提示

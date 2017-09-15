@@ -66,6 +66,7 @@ public abstract class BaseFuncActivity<T extends BasePresenter> extends BaseActi
 
     @Override
     public void showError(ErrorThrowable errorThrowable) {
+        errorThrowable.printStackTrace();
         closeLoadingDialog();
         ToastUtil.showToast(errorThrowable.msg);
     }

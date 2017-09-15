@@ -1,12 +1,18 @@
 package cn.xiaolong.ticketsystem.ui.trendanalysis;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.util.Pair;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.xiaolong.ticketsystem.R;
@@ -75,20 +81,62 @@ public class ParityTrendActivity extends BaseTitleBarActivity<ParityTrendPresent
     @Override
     public void onGetHistoryRecentTicketListSuccess(List<TicketOpenData> list) {
         lcParityTrend = LineChartHelper.getsLineChartHelper().generateLineChartConfig(lcParityTrend);
+        LineData lineData;
+        List<ILineDataSet> dataSetList = new ArrayList<>();
         if (lcParityTrend.getData() != null &&
                 lcParityTrend.getData().getDataSetCount() > 0) {
-            LineData lineData = lcParityTrend.getLineData();
+            lineData = lcParityTrend.getLineData();
             for (int i = 0; i < lineData.getDataSetCount(); i++) {
-
+                int colorDivider = 255 / lineData.getDataSetCount();
+                dataSetList.add(LineChartHelper.
+                        getsLineChartHelper().
+                        generateLineDataSet(generateEntry(list, i),
+                                Color.rgb(255 - i * colorDivider, 0 + i * colorDivider, 0),
+                                "号码" + i));
             }
-//            set1.setValues(yVals1);
-//            set2.setValues(yVals2);
-//            set3.setValues(yVals3);
             lcParityTrend.getData().notifyDataChanged();
             lcParityTrend.notifyDataSetChanged();
         } else {
-//            for(int i=0;i<list.clear();i++)
-//            LineDataSet lineDataSet = LineChartHelper.getsLineChartHelper().generateLineDataSet(, getResources().getColor(R.color.main_red_color, ""));
+            int codeLength = translateCodeToList(list.get(0).openCode).first.length + translateCodeToList(list.get(0).openCode).second.length;
+            int colorDivider = 255 / codeLength;
+            for (int i = 0; i < codeLength; i++) {
+                dataSetList.add(LineChartHelper.
+                        getsLineChartHelper().
+                        generateLineDataSet(generateEntry(list, i),
+                                Color.rgb(255 - i * colorDivider, 0, 0 + i * colorDivider),
+                                "号码" + (i + 1)));
+            }
+            lineData = new LineData(dataSetList);
+            lcParityTrend.setData(lineData);
+            lcParityTrend.getXAxis().setValueFormatter((value, axis) -> "第" + list.get((int) value).expect + "期");
+            lcParityTrend.getAxisLeft().setValueFormatter((value, axis) -> value % 2 == 1 ? "奇" : "偶");
+            lcParityTrend.animateX(3000);
         }
+
+    }
+
+    private List<Entry> generateEntry(List<TicketOpenData> list, int i) {
+        List<Entry> entryList = new ArrayList<>();
+        for (int j = 0; j < list.size(); j++) {
+            String first[] = translateCodeToList(list.get(j).openCode).first;
+            String second[] = translateCodeToList(list.get(j).openCode).second;
+            if (i < first.length) {
+                entryList.add(new Entry(j, Float.valueOf(first[i]) % 2 + (i * 2)));
+            } else {
+                entryList.add(new Entry(j, Float.valueOf(second[i - first.length]) % 2 + (i * 2)));
+            }
+        }
+        return entryList;
+    }
+
+    private Pair<String[], String[]> translateCodeToList(String openCode) {
+        String[] splitString = openCode.split("\\+");
+        String[] openNumbers = splitString[0].split(",");
+        String[] specialNumbers = new String[]{};
+        if (splitString.length > 1) {
+            //说明是带特别码的彩种
+            specialNumbers = splitString[1].split(",");
+        }
+        return new Pair<>(openNumbers, specialNumbers);
     }
 }

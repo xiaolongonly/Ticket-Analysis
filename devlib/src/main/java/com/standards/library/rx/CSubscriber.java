@@ -13,6 +13,7 @@ public abstract class CSubscriber<T> extends Subscriber<T> {
 
     @Override
     public void onError(Throwable e) {
+        e.printStackTrace();
         if (e == null) {
             onError(new ErrorThrowable(ReturnCode.LOCAL_UNKNOWN_ERROR, ""));
         } else if (e instanceof ErrorThrowable) {
