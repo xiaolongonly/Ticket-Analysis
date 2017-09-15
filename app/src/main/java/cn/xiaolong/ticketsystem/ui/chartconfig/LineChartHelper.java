@@ -1,4 +1,4 @@
-package cn.xiaolong.ticketsystem.utils;
+package cn.xiaolong.ticketsystem.ui.chartconfig;
 
 import android.graphics.Color;
 
@@ -7,7 +7,6 @@ import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.standards.library.app.AppContext;
@@ -30,7 +29,7 @@ public class LineChartHelper {
 
     public static LineChartHelper getsLineChartHelper() {
         if (sLineChartHelper == null) {
-            synchronized (TicketTypeDataManager.class) {
+            synchronized (LineChartHelper.class) {
                 if (sLineChartHelper == null) {
                     sLineChartHelper = new LineChartHelper();
                 }
@@ -44,12 +43,12 @@ public class LineChartHelper {
         dataSet.setLineWidth(2.0f);
         dataSet.setCircleRadius(3.5f);
         dataSet.setDrawCircleHole(true);//填充圆
-        dataSet.setDrawValues(true);
-        dataSet.setValueTextColor(color);
+//        dataSet.setDrawValues(true);
+//        dataSet.setValueTextColor(color);
         dataSet.setValueTextSize(9f);
         dataSet.setHighlightLineWidth(2.0f);
 //        dataSet.setDrawFilled(true);//区域颜色
-//        dataSet.setFillAlpha(51);
+        dataSet.setFillAlpha(51);
 //        dataSet.setFillColor(color); //填充色
         dataSet.setHighLightColor(color); //选中十字线色
         dataSet.setColor(color); //线条颜色
@@ -72,6 +71,7 @@ public class LineChartHelper {
         yAxisRight.setEnabled(false);
         YAxis yAxisLeft = lineChart.getAxisLeft();
         yAxisLeft.setAxisMinimum(0);
+        yAxisLeft.setGranularity(1);
         //背景设置
         lineChart.setDrawGridBackground(false);//表格背景绘制
         lineChart.setBackgroundColor(AppContext.getContext().getResources().getColor(R.color.white));

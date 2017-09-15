@@ -6,10 +6,9 @@ import android.support.v4.util.Pair;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import java.util.ArrayList;
@@ -22,12 +21,12 @@ import cn.xiaolong.ticketsystem.bean.TicketOpenData;
 import cn.xiaolong.ticketsystem.bean.TicketType;
 import cn.xiaolong.ticketsystem.presenter.ParityTrendPresenter;
 import cn.xiaolong.ticketsystem.presenter.view.IParityTrendView;
-import cn.xiaolong.ticketsystem.utils.LineChartHelper;
+import cn.xiaolong.ticketsystem.ui.chartconfig.LineChartHelper;
 
 /**
  * @author xiaolong
  * @version v1.0
- * @function <描述功能>
+ * @function <奇偶分析>
  * @date: 2017/9/14 14:48
  */
 
@@ -87,12 +86,8 @@ public class ParityTrendActivity extends BaseTitleBarActivity<ParityTrendPresent
                 lcParityTrend.getData().getDataSetCount() > 0) {
             lineData = lcParityTrend.getLineData();
             for (int i = 0; i < lineData.getDataSetCount(); i++) {
-                int colorDivider = 255 / lineData.getDataSetCount();
-                dataSetList.add(LineChartHelper.
-                        getsLineChartHelper().
-                        generateLineDataSet(generateEntry(list, i),
-                                Color.rgb(255 - i * colorDivider, 0 + i * colorDivider, 0),
-                                "号码" + i));
+                LineDataSet lineDataSet = (LineDataSet) lineData.getDataSetByIndex(i);
+                lineDataSet.setValues(generateEntry(list, i));
             }
             lcParityTrend.getData().notifyDataChanged();
             lcParityTrend.notifyDataSetChanged();
@@ -105,10 +100,11 @@ public class ParityTrendActivity extends BaseTitleBarActivity<ParityTrendPresent
                         generateLineDataSet(generateEntry(list, i),
                                 Color.rgb(255 - i * colorDivider, 0, 0 + i * colorDivider),
                                 "号码" + (i + 1)));
+
             }
             lineData = new LineData(dataSetList);
             lcParityTrend.setData(lineData);
-            lcParityTrend.getXAxis().setValueFormatter((value, axis) -> "第" + list.get((int) value).expect + "期");
+            lcParityTrend.getXAxis().setValueFormatter((value, axis) -> list.get((int) value).expect + "期");
             lcParityTrend.getAxisLeft().setValueFormatter((value, axis) -> value % 2 == 1 ? "奇" : "偶");
             lcParityTrend.animateX(3000);
         }
@@ -120,11 +116,17 @@ public class ParityTrendActivity extends BaseTitleBarActivity<ParityTrendPresent
         for (int j = 0; j < list.size(); j++) {
             String first[] = translateCodeToList(list.get(j).openCode).first;
             String second[] = translateCodeToList(list.get(j).openCode).second;
-            if (i < first.length) {
-                entryList.add(new Entry(j, Float.valueOf(first[i]) % 2 + (i * 2)));
-            } else {
-                entryList.add(new Entry(j, Float.valueOf(second[i - first.length]) % 2 + (i * 2)));
+            try {
+                if (i < first.length) {
+                    entryList.add(new Entry(j, Float.valueOf(first[i]) % 2 + (i * 2)));
+                } else {
+                    entryList.add(new Entry(j, Float.valueOf(second[i - first.length]) % 2 + (i * 2)));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                entryList.add(new Entry(j, 0 + (i * 2)));
             }
+
         }
         return entryList;
     }

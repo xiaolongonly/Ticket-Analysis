@@ -17,6 +17,7 @@ import cn.xiaolong.ticketsystem.bean.TicketOpenData;
 import cn.xiaolong.ticketsystem.bean.TicketType;
 import cn.xiaolong.ticketsystem.presenter.OpenResultPresenter;
 import cn.xiaolong.ticketsystem.presenter.view.IOpenResultView;
+import cn.xiaolong.ticketsystem.ui.trendanalysis.AvgAnalysisActivity;
 import cn.xiaolong.ticketsystem.ui.trendanalysis.ParityTrendActivity;
 import cn.xiaolong.ticketsystem.utils.LaunchUtil;
 
@@ -103,6 +104,13 @@ public class OpenResultActivity extends BaseTitleBarActivity<OpenResultPresenter
         ClickView(findView(R.id.tvParityTrend))
                 .subscribe(o -> LaunchUtil.launchActivity(this, ParityTrendActivity.class,
                         ParityTrendActivity.buildBundle(mTicketType)));
+
+        /**
+         * 均值分析
+         */
+        ClickView(findView(R.id.tvAvgAnalysis))
+                .subscribe(o -> LaunchUtil.launchActivity(this, AvgAnalysisActivity.class,
+                        AvgAnalysisActivity.buildBundle(mTicketType)));
     }
 
     @Override
