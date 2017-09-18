@@ -9,6 +9,7 @@ import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ import cn.xiaolong.ticketsystem.bean.TicketOpenData;
 import cn.xiaolong.ticketsystem.bean.TicketType;
 import cn.xiaolong.ticketsystem.presenter.ParityTrendPresenter;
 import cn.xiaolong.ticketsystem.presenter.view.IParityTrendView;
+import cn.xiaolong.ticketsystem.ui.chartconfig.DataMarkView;
 import cn.xiaolong.ticketsystem.ui.chartconfig.LineChartHelper;
 import cn.xiaolong.ticketsystem.utils.ArrayUtil;
 
@@ -100,11 +102,24 @@ public class SumAnalysisActivity extends BaseTitleBarActivity<ParityTrendPresent
                             "和值分布"));
             lineData = new LineData(dataSetList);
             lcParityTrend.setData(lineData);
-            lcParityTrend.getXAxis().setValueFormatter((value, axis) -> list.get((int) value).expect + "期");
+            lcParityTrend.getXAxis().setValueFormatter((value, axis) -> {
+                if (value >= 0 && list.size() > value)
+                    return list.get((int) value).expect + "期";
+                else
+                    return "0";
+            });
             lcParityTrend.getAxisLeft().setValueFormatter((value, axis) -> value + "");
-            lcParityTrend.animateX(3000);
+            lcParityTrend.setMarker(new DataMarkView(this, new DataMarkView.IDataValueFormat() {
+                @Override
+                public String format(Entry e, Highlight highlight) {
+                    if (e.getX() >= 0 && list.size() > e.getX())
+                        return list.get((int) e.getX()).expect + "期：" + e.getY();
+                    else
+                        return "0";
+                }
+            }));
         }
-
+        lcParityTrend.animateX(3000);
     }
 
     private List<Entry> generateEntry(List<TicketOpenData> list) {

@@ -41,6 +41,7 @@ public class ClickRelativeLayout extends AutoRelativeLayout {
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getActionMasked()) {
             case MotionEvent.ACTION_DOWN:
+                isTouchOutside = false;
                 //在按下事件中设置滤镜
                 setFilter();
                 break;
@@ -63,8 +64,10 @@ public class ClickRelativeLayout extends AutoRelativeLayout {
 //                LogUtil.d(event.getX() + " " + event.getY());
                 if ((event.getX() < 0 || event.getX() > getWidth()) ||
                         event.getY() < 0 || event.getY() > getHeight()) {
-                    isTouchOutside = true;
-                    removeFilter();
+                    if (!isTouchOutside) {
+                        isTouchOutside = true;
+                        removeFilter();
+                    }
                 }
                 break;
             default:

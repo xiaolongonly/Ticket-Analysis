@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
 
-import com.standards.library.util.DateUtils;
 import com.standards.library.util.TimeUtils;
 
 import cn.xiaolong.ticketsystem.R;
@@ -17,7 +16,9 @@ import cn.xiaolong.ticketsystem.bean.TicketOpenData;
 import cn.xiaolong.ticketsystem.bean.TicketType;
 import cn.xiaolong.ticketsystem.presenter.OpenResultPresenter;
 import cn.xiaolong.ticketsystem.presenter.view.IOpenResultView;
+import cn.xiaolong.ticketsystem.ui.trendanalysis.AverageSimulateActivity;
 import cn.xiaolong.ticketsystem.ui.trendanalysis.AvgAnalysisActivity;
+import cn.xiaolong.ticketsystem.ui.trendanalysis.NumberRateActivity;
 import cn.xiaolong.ticketsystem.ui.trendanalysis.ParityTrendActivity;
 import cn.xiaolong.ticketsystem.ui.trendanalysis.SumAnalysisActivity;
 import cn.xiaolong.ticketsystem.utils.LaunchUtil;
@@ -116,6 +117,12 @@ public class OpenResultActivity extends BaseTitleBarActivity<OpenResultPresenter
         ClickView(findView(R.id.tvSumAnalysis))
                 .subscribe(o -> LaunchUtil.launchActivity(this, SumAnalysisActivity.class,
                         SumAnalysisActivity.buildBundle(mTicketType)));
+
+        ClickView(findView(R.id.tvNumRate))
+                .subscribe(o -> LaunchUtil.launchActivity(this, NumberRateActivity.class,
+                        NumberRateActivity.buildBundle(mTicketType)));
+        ClickView(findView(R.id.tvAvgSimulate))
+                .subscribe(o -> LaunchUtil.launchActivity(this, AverageSimulateActivity.class));
     }
 
     @Override

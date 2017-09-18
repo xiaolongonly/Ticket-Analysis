@@ -73,7 +73,6 @@ public class LineChartHelper {
         yAxisLeft.setAxisMinimum(0);
         yAxisLeft.setGranularity(1);
 
-        lineChart.setMarker(new DataMarkView(AppContext.getContext(), 2, ""));
         //背景设置
         lineChart.setDrawGridBackground(false);//表格背景绘制
         lineChart.setBackgroundColor(AppContext.getContext().getResources().getColor(R.color.white));

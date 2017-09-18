@@ -2,6 +2,7 @@ package cn.xiaolong.ticketsystem.ui.trendanalysis;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.util.ArrayMap;
 import android.support.v4.util.Pair;
 import android.widget.TextView;
 
@@ -10,14 +11,14 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import cn.xiaolong.ticketsystem.R;
 import cn.xiaolong.ticketsystem.base.BaseTitleBar;
@@ -37,7 +38,7 @@ import cn.xiaolong.ticketsystem.utils.ArrayUtil;
  * @date: 2017/9/15 11:38
  */
 
-public class AvgAnalysisActivity extends BaseTitleBarActivity<ParityTrendPresenter> implements IParityTrendView {
+public class NumberRateActivity extends BaseTitleBarActivity<ParityTrendPresenter> implements IParityTrendView {
     private TextView tvAnalysisResult;
     private TicketType mTicketType;
     private TextView tvTitle;
@@ -74,7 +75,7 @@ public class AvgAnalysisActivity extends BaseTitleBarActivity<ParityTrendPresent
         tvAnalysisResult = findView(R.id.tvAnalysisResult);
         bcAvgAnalysis = findView(R.id.bcAvgAnalysis);
         if (mTicketType != null) {
-            tvTitle.setText(mTicketType.descr + "均值分析");
+            tvTitle.setText(mTicketType.descr + "号码频率");
             mPresenter.getRecentOpenDatas(mTicketType.code, "100");
         }
     }
@@ -93,64 +94,53 @@ public class AvgAnalysisActivity extends BaseTitleBarActivity<ParityTrendPresent
             barData = bcAvgAnalysis.getBarData();
             for (int i = 0; i < barData.getDataSetCount(); i++) {
                 BarDataSet barDataSet = (BarDataSet) barData.getDataSetByIndex(i);
-                barDataSet.setValues(generateEntry(list, bcAvgAnalysis.getData().getDataSetCount()));
+                barDataSet.setValues(generateEntry(list));
             }
             bcAvgAnalysis.getData().notifyDataChanged();
             bcAvgAnalysis.notifyDataSetChanged();
         } else {
-            int codeLength = translateCodeToList(list.get(0).openCode).first.length + translateCodeToList(list.get(0).openCode).second.length + 1;
-            int divide = 255 / codeLength;
             List<Integer> colorList = new ArrayList<>();
-            for (int i = 0; i < codeLength; i++) {
-                colorList.add(Color.rgb(255 - divide * i, 0, 0 + divide * i));
-            }
-            IBarDataSet barDataSet = BarChartHelper.getBarChartHelper().generateBarDataSet(generateEntry(list, codeLength), "均值图", colorList);
+            colorList.add(getResources().getColor(R.color.main_red_color));
+            IBarDataSet barDataSet = BarChartHelper.getBarChartHelper().generateBarDataSet(generateEntry(list), "号码频率", colorList);
             barData = new BarData(barDataSet);
             bcAvgAnalysis.setData(barData);
-            bcAvgAnalysis.getXAxis().setValueFormatter((value, axis) -> {
-                if (value == codeLength - 1) {
-                    return "和平均";
-                } else {
-                    return (1 + (int) value) + "号";
-                }
-            });
-//            bcAvgAnalysis.getAxisLeft().setValueFormatter((value, axis) -> (value));
+            bcAvgAnalysis.getXAxis().setValueFormatter((value, axis) -> (int) value + "号");
             bcAvgAnalysis.setMarker(new DataMarkView(this, new DataMarkView.IDataValueFormat() {
                 @Override
                 public String format(Entry e, Highlight highlight) {
-                    if (e.getX() == codeLength - 1) {
-                        return "和平均：" + e.getY();
-                    } else {
-                        return (1 + (int) e.getX()) + "号：" + e.getY();
-                    }
+                    return ((int) e.getX()) + "号：" + e.getY();
                 }
             }));
         }
-        bcAvgAnalysis.animateY(3000);
 
+        bcAvgAnalysis.animateY(3000);
     }
 
-    private List<BarEntry> generateEntry(List<TicketOpenData> list, int codeLength) {
-        float[] valuesCount = new float[codeLength];
+    private List<BarEntry> generateEntry(List<TicketOpenData> list, int... numberOf) {
+        List<Integer> keyList = new ArrayList<>();
+        ArrayMap<Integer, Integer> numberMap = new ArrayMap<>();
         for (int j = 0; j < list.size(); j++) {
             Pair<String[], String[]> sPair = translateCodeToList(list.get(j).openCode);
             String[] values = ArrayUtil.concat(sPair.first, sPair.second);
-            for (int k = 0; k < codeLength; k++) {
+            for (int k = 0; k < (numberOf.length == 0 ? values.length : numberOf.length); k++) {
                 try {
-                    valuesCount[k] += Float.valueOf(values[k]);//非数字直接抛异常
+                    int number = Integer.valueOf(values[numberOf.length > 0 ? numberOf[k] : k]);
+                    if (keyList.contains(number)) {
+                        numberMap.put(number, numberMap.get(number) + 1);
+                    } else {
+                        keyList.add(number);
+                        numberMap.put(number, 1);
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
-                    valuesCount[k] += 0;
                 }
             }
         }
+        Collections.sort(keyList);
         List<BarEntry> barEntries = new ArrayList<>();
-        float count = 0;
-        for (int i = 0; i < codeLength - 1; i++) {
-            count += valuesCount[i] / list.size();
-            barEntries.add(new BarEntry(i, valuesCount[i] / list.size()));
+        for (int i = 0; i < keyList.size(); i++) {
+            barEntries.add(new BarEntry(keyList.get(i), numberMap.get(keyList.get(i))));
         }
-        barEntries.add(new BarEntry(codeLength - 1, count));
         return barEntries;
     }
 

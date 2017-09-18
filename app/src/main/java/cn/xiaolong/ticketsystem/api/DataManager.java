@@ -40,9 +40,9 @@ public class DataManager extends ResponseHandle {
                 .compose(applySchedulersWithToken());
     }
 
-    //获取单期开奖信息
-    public static Observable<ListData<TicketOpenData>> getMutiPeriodCheck(String code, String count,String endTime) {
-        return Dao.getApiService().getMutiPeriodCheck(code, endTime,count)
+    //获取多期开奖信息
+    public static Observable<ListData<TicketOpenData>> getMutiPeriodCheck(String code, String count, String endTime) {
+        return Dao.getApiService().getMutiPeriodCheck(code, endTime, count)
                 .flatMap(newEntityData())
                 .compose(applySchedulersWithToken());
     }

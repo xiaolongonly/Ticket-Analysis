@@ -17,7 +17,7 @@ import android.widget.ImageView;
  * @date 2016/12/1-16:21
  */
 public class ClickImageView extends ImageView {
-
+    private boolean isTouchOutside;
     private Animator anim1;
     private Animator anim2;
     private Handler mHandler = new Handler();
@@ -53,6 +53,7 @@ public class ClickImageView extends ImageView {
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                isTouchOutside = false;
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
@@ -62,16 +63,32 @@ public class ClickImageView extends ImageView {
                 });
                 break;
             case MotionEvent.ACTION_MOVE:
+                //在CANCEL和UP事件中清除滤镜
+                if ((event.getX() < 0 || event.getX() > getWidth()) ||
+                        event.getY() < 0 || event.getY() > getHeight()) {
+                    if (!isTouchOutside) {
+                        mHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                anim1.end();
+                                anim2.start();
+                            }
+                        });
+                        isTouchOutside = true;
+                    }
+                }
                 break;
             case MotionEvent.ACTION_UP:
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        anim1.end();
-                        anim2.start();
-                    }
-                });
-                performClick();
+                if (!isTouchOutside) {
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            anim1.end();
+                            anim2.start();
+                        }
+                    });
+                    performClick();
+                }
                 break;
             case MotionEvent.ACTION_CANCEL:
                 break;

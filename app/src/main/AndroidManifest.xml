@@ -25,11 +25,12 @@
 
         <activity android:name=".ui.follow.FollowAddActivity" />
         <activity android:name=".ui.follow.FollowSortActivity" />
-        <activity android:name=".ui.AverageActivity" />
+        <activity android:name=".ui.trendanalysis.AverageSimulateActivity" />
         <activity android:name=".ui.OpenResultActivity" />
         <activity android:name=".ui.trendanalysis.ParityTrendActivity" />
         <activity android:name=".ui.trendanalysis.AvgAnalysisActivity" />
         <activity android:name=".ui.trendanalysis.SumAnalysisActivity" />
+        <activity android:name=".ui.trendanalysis.NumberRateActivity"/>
         <activity android:name=".ui.web.WebActivity" />
         <activity
             android:name=".ui.HistoryActivity"

@@ -35,6 +35,7 @@ public class ClickTextView extends TextView {
         if (isEnabled()) {
             switch (event.getActionMasked()) {
                 case MotionEvent.ACTION_DOWN:
+                    isTouchOutside = false;
                     //在按下事件中设置滤镜
                     setFilter();
                     break;
@@ -46,13 +47,14 @@ public class ClickTextView extends TextView {
                 case MotionEvent.ACTION_CANCEL:
                     //在CANCEL和UP事件中清除滤镜
                     removeFilter();
-                    isTouchOutside = false;
                     break;
                 case MotionEvent.ACTION_MOVE:
                     if ((event.getX() < 0 || event.getX() > getWidth()) ||
                             event.getY() < 0 || event.getY() > getHeight()) {
-                        isTouchOutside = true;
-                        removeFilter();
+                        if (!isTouchOutside) {
+                            isTouchOutside = true;
+                            removeFilter();
+                        }
                     }
                     break;
                 default:

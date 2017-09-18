@@ -1,18 +1,19 @@
-package cn.xiaolong.ticketsystem.ui;
+package cn.xiaolong.ticketsystem.ui.trendanalysis;
 
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.view.KeyEvent;
-import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.standards.library.util.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,12 +21,14 @@ import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import cn.xiaolong.ticketsystem.base.BaseTitleBar;
+import cn.xiaolong.ticketsystem.base.BaseTitleBarActivity;
 import cn.xiaolong.ticketsystem.thread.DefaultThreadFactory;
 import cn.xiaolong.ticketsystem.thread.TicketRandomRunnable;
 import cn.xiaolong.ticketsystem.adapter.NumberListAdapter;
 import cn.xiaolong.ticketsystem.R;
 
-public class AverageActivity extends AppCompatActivity {
+public class AverageSimulateActivity extends BaseTitleBarActivity {
     private TextView tvGenerate;
     private TextView tvData;
     private EditText etAllNum;
@@ -39,59 +42,55 @@ public class AverageActivity extends AppCompatActivity {
     private NumberListAdapter numberListAdapter;
     private double avg;
     private int taskCount = 0;
-//    private StringBuilder sb;
+    private ImageView ivRight;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_average);
+    protected int getLayoutId() {
+        return R.layout.activity_average_simulate;
+    }
+
+    @Override
+    protected void init() {
         avg = 0;
-//        sb = new StringBuilder();
         etAllNum = (EditText) findViewById(R.id.etAllNum);
         etChooseSize = (EditText) findViewById(R.id.etChooseSize);
         etGenerateNum = (EditText) findViewById(R.id.etGenerateNum);
-//        etTaskNum = (EditText) findViewById(R.id.etTaskNum);
         tvGenerate = (TextView) findViewById(R.id.tvGenerate);
         tvAvg = (TextView) findViewById(R.id.tvAvg);
         tvData = (TextView) findViewById(R.id.tvData);
         etNumberEdit = (EditText) findViewById(R.id.etNumberEdit);
         rvInitData = (RecyclerView) findViewById(R.id.rvInitData);
-
-
         numberListAdapter = new NumberListAdapter(this, numberList);
         rvInitData.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         rvInitData.setAdapter(numberListAdapter);
 
+    }
 
-        etNumberEdit.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (TextUtils.isEmpty(etNumberEdit.getText())) {
+    @Override
+    protected void setListener() {
+
+        etNumberEdit.setOnEditorActionListener((v, actionId, event) -> {
+            if (TextUtils.isEmpty(etNumberEdit.getText())) {
+                return true;
+            }
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                if (numberList.contains(Integer.valueOf(etNumberEdit.getText().toString()))) {
+                    Toast.makeText(AverageSimulateActivity.this, "已经添加过该数据", Toast.LENGTH_LONG).show();
                     return true;
                 }
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    if (numberList.contains(Integer.valueOf(etNumberEdit.getText().toString()))) {
-                        Toast.makeText(AverageActivity.this, "已经添加过该数据", Toast.LENGTH_LONG).show();
-                        return true;
-                    }
-                    numberList.add(Integer.valueOf(etNumberEdit.getText().toString()));
-                    numberListAdapter.notifyDataSetChanged();
-                    etNumberEdit.setText("");
-                    return true;
-                }
-                return false;
+                numberList.add(Integer.valueOf(etNumberEdit.getText().toString()));
+                numberListAdapter.notifyDataSetChanged();
+                etNumberEdit.setText("");
+                return true;
             }
+            return false;
         });
-        tvGenerate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tvGenerate.setEnabled(false);
-                calculateData(numberList, TextUtils.isEmpty(etAllNum.getText().toString()) ? "0" : etAllNum.getText().toString(),
-                        TextUtils.isEmpty(etChooseSize.getText().toString()) ? "0" : etChooseSize.getText().toString(),
-                        TextUtils.isEmpty(etGenerateNum.getText().toString()) ? "0" : etGenerateNum.getText().toString());
-            }
+        tvGenerate.setOnClickListener(v -> {
+            tvGenerate.setEnabled(false);
+            calculateData(numberList, TextUtils.isEmpty(etAllNum.getText().toString()) ? "0" : etAllNum.getText().toString(),
+                    TextUtils.isEmpty(etChooseSize.getText().toString()) ? "0" : etChooseSize.getText().toString(),
+                    TextUtils.isEmpty(etGenerateNum.getText().toString()) ? "0" : etGenerateNum.getText().toString());
         });
-
     }
 
     private void calculateData(List<Integer> numberList, String allNum, String chooseSize, String generateSize) {
@@ -101,11 +100,19 @@ public class AverageActivity extends AppCompatActivity {
         int generateTaskSize = Integer.valueOf(generateSize);
         List<Integer> tasks = taskDivider(generateTaskSize, cores);
         //run all thread
+        showLoading();
         for (int i = 0; i < cores; i++) {
             runTask(threadPoolExecutor, handler, allNum, chooseSize, tasks.get(i), numberList);
         }
     }
 
+    /**
+     * 将任务平均分配给每个线程
+     *
+     * @param generateTaskSize
+     * @param cores
+     * @return
+     */
     private List<Integer> taskDivider(int generateTaskSize, int cores) {
         List<Integer> tasks = new ArrayList<>();
         int avgNum = generateTaskSize / cores;
@@ -132,6 +139,7 @@ public class AverageActivity extends AppCompatActivity {
 //                    sb = new StringBuilder();
                     taskCount = 0;
                     tvGenerate.setEnabled(true);
+                    hideLoading();
                 }
 
             }
@@ -143,9 +151,16 @@ public class AverageActivity extends AppCompatActivity {
                          String chooseSize, int threadTask, List<Integer> numberList) {
         threadPoolExecutor.execute(new TicketRandomRunnable(handler, Integer.valueOf(allNum),
                 Integer.valueOf(chooseSize), threadTask, numberList));
-//        threadPoolExecutor.execute(new MyRunnable(handler));
         taskCount++;
     }
 
 
+    @Override
+    public void initTitleBar(BaseTitleBar titleBar) {
+        titleBar.setTitleText("均值演算");
+        ivRight = (ImageView) titleBar.right;
+        ivRight.setImageResource(android.R.drawable.ic_dialog_info);
+        ivRight.setOnClickListener(v -> ToastUtil.showToast("本页面模拟开奖,求数据平均值，后续将根据不同彩种的规则来做，" +
+                "如果您是老彩民，需要加入一些特别的计算方式，请联系QQ 719243738"));
+    }
 }

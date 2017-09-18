@@ -9,6 +9,7 @@ import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import java.util.ArrayList;
@@ -21,8 +22,8 @@ import cn.xiaolong.ticketsystem.bean.TicketOpenData;
 import cn.xiaolong.ticketsystem.bean.TicketType;
 import cn.xiaolong.ticketsystem.presenter.ParityTrendPresenter;
 import cn.xiaolong.ticketsystem.presenter.view.IParityTrendView;
+import cn.xiaolong.ticketsystem.ui.chartconfig.DataMarkView;
 import cn.xiaolong.ticketsystem.ui.chartconfig.LineChartHelper;
-import cn.xiaolong.ticketsystem.ui.chartconfig.ParityMarkView;
 
 /**
  * @author xiaolong
@@ -81,7 +82,6 @@ public class ParityTrendActivity extends BaseTitleBarActivity<ParityTrendPresent
     @Override
     public void onGetHistoryRecentTicketListSuccess(List<TicketOpenData> list) {
         lcParityTrend = LineChartHelper.getsLineChartHelper().generateLineChartConfig(lcParityTrend);
-        lcParityTrend.setMarker(new ParityMarkView(this));
         LineData lineData;
         List<ILineDataSet> dataSetList = new ArrayList<>();
         if (lcParityTrend.getData() != null &&
@@ -106,11 +106,22 @@ public class ParityTrendActivity extends BaseTitleBarActivity<ParityTrendPresent
             }
             lineData = new LineData(dataSetList);
             lcParityTrend.setData(lineData);
-            lcParityTrend.getXAxis().setValueFormatter((value, axis) -> list.get((int) value).expect + "期");
-            lcParityTrend.getAxisLeft().setValueFormatter((value, axis) -> value % 2 == 1 ? "奇" : "偶");
-            lcParityTrend.animateX(3000);
-        }
+            lcParityTrend.getXAxis().setValueFormatter((value, axis) -> {
+                if (value >= 0 && list.size() > value)
+                    return list.get((int) value).expect + "期";
+                else
+                    return "0";
+            });
+            lcParityTrend.setMarker(new DataMarkView(this, (e, highlight) -> {
+                if (e.getX() >= 0 && list.size() > e.getX())
+                    return list.get((int) e.getX()).expect + "期：" + (e.getY() % 2 == 1 ? "奇" : "偶");
+                else
+                    return "0";
 
+            }));
+            lcParityTrend.getAxisLeft().setValueFormatter((value, axis) -> value % 2 == 1 ? "奇" : "偶");
+        }
+        lcParityTrend.animateX(3000);
     }
 
     private List<Entry> generateEntry(List<TicketOpenData> list, int i) {

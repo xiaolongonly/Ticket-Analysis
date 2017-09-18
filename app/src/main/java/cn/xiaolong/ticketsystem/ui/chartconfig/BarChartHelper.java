@@ -1,23 +1,14 @@
 package cn.xiaolong.ticketsystem.ui.chartconfig;
 
-import android.graphics.Color;
-
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-import com.standards.library.app.AppContext;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import cn.xiaolong.ticketsystem.manager.TicketTypeDataManager;
 
 /**
  * @author xiaolong
@@ -45,7 +36,7 @@ public class BarChartHelper {
     public IBarDataSet generateBarDataSet(List<BarEntry> entries, String describle, List<Integer> colors) {
         BarDataSet dataSet = new BarDataSet(entries, describle);
         dataSet.setColors(colors);
-        dataSet.setValueTextSize(11f);
+//        dataSet.setValueTextSize(11f);
         int highLightColor = 0x20ffffff;
         dataSet.setHighLightColor(highLightColor);
         return dataSet;
@@ -54,19 +45,36 @@ public class BarChartHelper {
     public BarChart generateBarChartConfig(BarChart barChart) {
         XAxis xAxis = barChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM); //定制X轴是在图表上方还是下方。
+        xAxis.setDrawAxisLine(true);
         xAxis.setDrawGridLines(false);
-        xAxis.setGranularity(1);//放大的时候X值不增多
+        xAxis.setGranularity(1f);//放大的时候X值不增多
+
+
         YAxis yAxisRight = barChart.getAxisRight();
         yAxisRight.setEnabled(false);
         YAxis yAxisLeft = barChart.getAxisLeft();
         yAxisLeft.setAxisMinimum(0);
 
-        barChart.setMarker(new DataMarkView(AppContext.getContext(), 2, ""));
-        barChart.setDescription(null);
-        barChart.setNoDataText("无数据");
-        barChart.getLegend().setPosition(Legend.LegendPosition.ABOVE_CHART_CENTER);
-        //设置单方向和双方向缩放 true x,y方向可以同时控制，false只能控制x方向的缩小放大或者Y方向的缩小放大
+        barChart.setDrawBarShadow(false);
         barChart.setPinchZoom(true);
+        barChart.setFitBars(true);
+        // if more than 60 entries are displayed in the chart, no values will be
+        // drawn
+        barChart.setMaxVisibleValueCount(60);
+
+        barChart.setDrawValueAboveBar(true);
+
+        barChart.getDescription().setEnabled(false);
+        barChart.setNoDataText("无数据");
+
+        Legend l = barChart.getLegend();
+        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
+        l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
+        //设置单方向和双方向缩放 true x,y方向可以同时控制，false只能控制x方向的缩小放大或者Y方向的缩小放大
+        l.setDrawInside(false);
+        l.setFormSize(8f);
+        l.setXEntrySpace(4f);
         return barChart;
     }
 }
