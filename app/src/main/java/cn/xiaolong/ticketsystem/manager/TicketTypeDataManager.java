@@ -39,10 +39,10 @@ public class TicketTypeDataManager {
      */
     private static List<TicketType> mOutTypeData;
 
-    /**
-     * 关注
-     */
-    private static List<TicketType> mFollowTypeData;
+//    /**
+//     * 关注
+//     */
+//    private static List<TicketType> mFollowTypeData;
 
     /**
      * 高频
@@ -172,9 +172,9 @@ public class TicketTypeDataManager {
      */
     public Observable<List<TicketType>> getMyFollowData() {
 
-        return mFollowTypeData == null ? getDataFromCache().flatMap(ticketTypes ->
+        return getDataFromCache().flatMap(ticketTypes ->
                 ticketTypes == null ? Observable.just(new ArrayList<TicketType>()) : Observable.just(ticketTypes)
-        ) : Observable.just(mFollowTypeData);
+        );
     }
 
     private Observable<List<TicketType>> getDataFromCache() {
@@ -195,7 +195,7 @@ public class TicketTypeDataManager {
         mAreaTypeData = null;
         mOutTypeData = null;
         mCountryTypeData = null;
-        mFollowTypeData = null;
+//        mFollowTypeData = null;
         mHighRateTypeData = null;
         return sTicketDataManager;
     }

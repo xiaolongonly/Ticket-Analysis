@@ -105,12 +105,7 @@ public class NumberRateActivity extends BaseTitleBarActivity<ParityTrendPresente
             barData = new BarData(barDataSet);
             bcAvgAnalysis.setData(barData);
             bcAvgAnalysis.getXAxis().setValueFormatter((value, axis) -> (int) value + "号");
-            bcAvgAnalysis.setMarker(new DataMarkView(this, new DataMarkView.IDataValueFormat() {
-                @Override
-                public String format(Entry e, Highlight highlight) {
-                    return ((int) e.getX()) + "号：" + e.getY();
-                }
-            }));
+            bcAvgAnalysis.setMarker(new DataMarkView(this, (e, highlight) -> ((int) e.getX()) + "号：" + e.getY()));
         }
 
         bcAvgAnalysis.animateY(3000);

@@ -1,0 +1,436 @@
+[
+  {
+    "codeDis": "1-35,1-12",
+    "regular": "5+2",
+    "repeat": false,
+    "code": "dlt",
+    "descr": "超级大乐透"
+  },
+  {
+    "codeDis": "0-9",
+    "regular": "3",
+    "repeat": true,
+    "code": "fc3d",
+    "descr": "福彩3d"
+  },
+  {
+    "codeDis": "0-9",
+    "regular": "3",
+    "repeat": true,
+    "code": "pl3",
+    "descr": "排列3"
+  },
+  {
+    "codeDis": "0-9",
+    "regular": "5",
+   "repeat": true,
+    "code": "pl5",
+    "descr": "排列5"
+  },
+  {
+    "codeDis": "1-30",
+    "regular": "5",
+    "repeat": false,
+    "code": "qlc",
+    "descr": "七乐彩"
+  },
+  {
+    "codeDis": "9",
+    "regular": "7",
+    "repeat": true,
+    "code": "qxc",
+    "descr": "七星彩"
+  },
+  {
+    "codeDis": "1-33,1-16",
+    "regular": "6+1",
+    "repeat": false,
+    "code": "ssq",
+    "descr": "双色球"
+  },
+  {
+    "codeDis": "1-11",
+    "regular": "5",
+    "repeat": false,
+    "code": "ah11x5",
+    "descr": "11选5"
+  },
+  {
+    "codeDis": "1-11",
+    "regular": "5",
+    "repeat": false,
+    "code": "bj11x5",
+    "descr": "11选5"
+  },
+  {
+    "codeDis": "1-11",
+    "regular": "5",
+    "repeat": false,
+    "code": "fj11x5",
+    "descr": "11选5"
+  },
+  {
+    "codeDis": "1-11",
+    "regular": "5",
+    "repeat": false,
+    "code": "gd11x5",
+    "descr": "11选5"
+  },
+  {
+    "codeDis": "1-11",
+    "regular": "5",
+    "repeat": false,
+    "code": "gs11x5",
+    "descr": "11选5"
+  },
+  {
+    "codeDis": "1-11",
+    "regular": "5",
+    "repeat": false,
+    "code": "gx11x5",
+    "descr": "11选5"
+  },
+  {
+    "codeDis": "1-11",
+    "regular": "5",
+    "repeat": false,
+    "code": "gz11x5",
+    "descr": "11选5"
+  },
+  {
+    "codeDis": "1-11",
+    "regular": "5",
+    "repeat": false,
+    "code": "heb11x5",
+    "descr": "11选5"
+  },
+  {
+    "codeDis": "1-11",
+    "regular": "5",
+    "repeat": false,
+    "code": "hlj11x5",
+    "descr": "11选5(幸运)"
+  },
+  {
+    "codeDis": "1-11",
+    "regular": "5",
+    "repeat": false,
+    "code": "hub11x5",
+    "descr": "11选5"
+  },
+  {
+    "codeDis": "1-11",
+    "regular": "5",
+    "repeat": false,
+    "code": "jl11x5",
+    "descr": "11选5"
+  },
+  {
+    "codeDis": "1-11",
+    "regular": "5",
+    "repeat": false,
+    "code": "js11x5",
+    "descr": "11选5"
+  },
+  {
+    "codeDis": "1-11",
+    "regular": "5",
+    "repeat": false,
+    "code": "jx11x5",
+    "descr": "11选5(多乐彩)"
+  },
+  {
+    "codeDis": "1-11",
+    "regular": "5",
+    "repeat": false,
+    "code": "ln11x5",
+    "descr": "11选5"
+  },
+  {
+    "codeDis": "1-11",
+    "regular": "5",
+    "repeat": false,
+    "code": "nmg11x5",
+    "descr": "11选5"
+  },
+  {
+    "codeDis": "1-11",
+    "regular": "5",
+    "repeat": false,
+    "code": "sd11x5",
+    "descr": "11选5(十一运夺金)"
+  },
+  {
+    "codeDis": "1-11",
+    "regular": "5",
+    "repeat": false,
+    "code": "sh11x5",
+    "descr": "11选5"
+  },
+  {
+    "codeDis": "1-11",
+    "regular": "5",
+    "repeat": false,
+    "code": "sxl11x5",
+    "descr": "11选5"
+  },
+  {
+    "codeDis": "1-11",
+    "regular": "5",
+    "repeat": false,
+    "code": "sxr11x5",
+    "descr": "11选5"
+  },
+  {
+    "codeDis": "1-11",
+    "regular": "5",
+    "repeat": false,
+    "code": "tj11x5",
+    "descr": "11选5"
+  },
+  {
+    "codeDis": "1-11",
+    "regular": "5",
+    "repeat": false,
+    "code": "xj11x5",
+    "descr": "11选5"
+  },
+  {
+    "codeDis": "1-11",
+    "regular": "5",
+    "repeat": false,
+    "code": "yn11x5",
+    "descr": "11选5"
+  },
+  {
+    "codeDis": "1-11",
+    "regular": "5",
+    "repeat": false,
+    "code": "zj11x5",
+    "descr": "11选5"
+  },
+  {
+    "codeDis": "1-22",
+    "regular": "5",
+    "repeat": false,
+    "code": "ctfc22x5",
+    "descr": "楚天风采22选5"
+  },
+  {
+    "special": "鼠，牛，虎，兔，龙，蛇，马，羊，猴，鸡，狗，猪",
+    "codeDis": "0-9,1-12",
+    "regular": "6+1",
+    "repeat": true,
+    "code": "df6j1",
+    "descr": "东方6+1"
+  },
+  {
+    "codeDis": "1-22",
+    "regular": "5",
+    "repeat": false,
+    "code": "fjtc22x5",
+    "descr": "体彩22选5"
+  },
+  {
+    "codeDis": "1-31",
+    "regular": "7",
+    "repeat": false,
+    "code": "fjtc31x7",
+    "descr": "体彩31选7"
+  },
+  {
+    "codeDis": "1-36",
+    "regular": "7",
+    "openRegular": "7+1",
+    "repeat": false,
+    "code": "fjtc36x7",
+    "descr": "体彩36选7"
+  },
+  {
+    "codeDis": "1-26",
+    "regular": "5",
+    "repeat": false,
+    "code": "gdfc26x5",
+    "descr": "南粤风采26选5"
+  },
+  {
+    "codeDis": "1-36",
+    "regular": "6+1",
+    "openRegular": "7+1",
+    "repeat": false,
+    "code": "gdfc36x5",
+    "descr": "南粤风采36选7"
+  },
+  {
+    "codeDis": "1-36",
+    "regular": "7",
+    "openRegular": "7+1",
+    "repeat": false,
+    "code": "gdszfc",
+    "descr": "深圳风采"
+  },
+  {
+    "codeDis": "1-26",
+    "regular": "7",
+    "openRegular": "6+1",
+    "repeat": false,
+    "code": "gxklsc",
+    "descr": "快乐双彩"
+  },
+  {
+    "codeDis": "1-15",
+    "regular": "7",
+    "repeat": false,
+    "code": "hd15x5",
+    "descr": "华东15选5"
+  },
+  {
+    "codeDis": "1-22",
+    "regular": "5",
+    "repeat": false,
+    "code": "hljfc22x5",
+    "descr": "龙江风彩22选5"
+  },
+  {
+    "codeDis": "1-36",
+    "regular": "7",
+    "openRegular": "7+1",
+    "repeat": false,
+    "code": "hljfc36x7",
+    "descr": "龙江风彩36选7"
+  },
+  {
+    "codeDis": "0-9,0-1",
+    "regular": "6+1",
+    "openRegular": "6+1",
+    "repeat": true,
+    "code": "hljfcp62",
+    "descr": "福彩p62"
+  },
+  {
+    "codeDis": "0-9,0-9",
+    "regular": "6+1",
+    "openRegular": "6+1",
+    "repeat": true,
+    "code": "hljtc6j1",
+    "descr": "体彩6+1"
+  },
+  {
+    "codeDis": "0-9",
+    "regular": "7",
+    "openRegular": "7",
+    "repeat": true,
+    "code": "jstc7ws",
+    "descr": "体彩7位数"
+  },
+  {
+    "codeDis": "1-35",
+    "regular": "7",
+    "openRegular": "7+1",
+    "repeat": false,
+    "code": "lnfc35x7",
+    "descr": "辽宁风采35选7"
+  },
+  {
+    "codeDis": "1-23",
+    "regular": "5",
+    "openRegular": "5",
+    "repeat": false,
+    "code": "qlfc23x5",
+    "descr": "齐鲁风采23选5"
+  },
+  {
+    "codeDis": "0-9",
+    "regular": "4",
+    "openRegular": "4",
+    "repeat": true,
+    "code": "shttcx4",
+    "descr": "天天彩选4"
+  },
+  {
+    "codeDis": "1-18",
+    "regular": "7",
+    "openRegular": "7",
+    "repeat": false,
+    "code": "xjfc18x7",
+    "descr": "新疆风采18选7"
+  },
+  {
+    "codeDis": "1-25",
+    "regular": "7",
+    "openRegular": "7",
+    "repeat": false,
+    "code": "xjfc25x7",
+    "descr": "新疆风采25选7"
+  },
+  {
+    "codeDis": "1-35",
+    "regular": "7",
+    "openRegular": "7+1",
+    "repeat": false,
+    "code": "xjfc35x7",
+    "descr": "新疆风采35选7"
+  },
+  {
+    "codeDis": "1-25",
+    "regular": "5",
+    "openRegular": "5",
+    "repeat": false,
+    "code": "ygc25x5",
+    "descr": "25选5(天天乐)"
+  },
+  {
+    "codeDis": "1-20",
+    "regular": "5",
+    "openRegular": "5",
+    "repeat": false,
+    "code": "yzfc20x5",
+    "descr": "燕赵风采20选5"
+  },
+  {
+    "codeDis": "0-9",
+    "regular": "5",
+    "repeat": true,
+    "code": "yzfcpl5",
+    "descr": "燕赵风采排列5"
+  },
+  {
+    "codeDis": "0-9",
+    "regular": "7",
+    "repeat": true,
+    "code": "yzfcpl7",
+    "descr": "燕赵风采排列7"
+  },
+  {
+    "codeDis": "1-20",
+    "regular": "5",
+    "openRegular": "5",
+    "repeat": false,
+    "code": "zjtc20x5",
+    "descr": "体彩20选5"
+  },
+  {
+    "codeDis": "0-9,0-9",
+    "regular": "6+1",
+    "openRegular": "6+1",
+    "repeat": true,
+    "code": "zjtc6j1",
+    "descr": "体彩6+1"
+  },
+  {
+    "codeDis": "1-22",
+    "regular": "5",
+    "openRegular": "5",
+    "repeat": false,
+    "code": "zyfc22x5",
+    "descr": "中原风采22选5"
+  },
+  {
+    "codeDis": "1-49",
+    "regular": "6+1",
+    "openRegular": "6+1",
+    "repeat": false,
+    "code": "hk6",
+    "descr": "彩"
+  }
+]

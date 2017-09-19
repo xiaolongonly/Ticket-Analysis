@@ -129,8 +129,13 @@ public class SumAnalysisActivity extends BaseTitleBarActivity<ParityTrendPresent
             String second[] = translateCodeToList(list.get(j).openCode).second;
             String[] values = ArrayUtil.concat(first, second);
             int count = 0;
+
             for (int i = 0; i < values.length; i++) {
-                count += Integer.valueOf(values[i]);
+                try {
+                    count += Integer.valueOf(values[i]);
+                } catch (Exception e) {
+                    count += 0;
+                }
             }
             entryList.add(new Entry(j, count));
         }
