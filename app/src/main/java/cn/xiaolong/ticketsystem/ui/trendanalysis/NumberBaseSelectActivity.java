@@ -2,6 +2,7 @@ package cn.xiaolong.ticketsystem.ui.trendanalysis;
 
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatSpinner;
+import android.support.v7.widget.RecyclerView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.SpinnerAdapter;
@@ -19,9 +20,11 @@ import cn.xiaolong.ticketsystem.utils.LaunchUtil;
  * @date: 2017/9/19 17:29
  */
 
-public class NumberGenerateActivity extends BaseTitleBarActivity {
+public class NumberBaseSelectActivity extends BaseTitleBarActivity {
     private AppCompatSpinner spGenerateCount;
     private TicketRegular mTicketRegular;
+    private LinearLayout llNumChoose;
+    private RecyclerView rvBaseList;
 
     public static Bundle buildBundle(TicketRegular ticketRegular) {
         Bundle bundle = new Bundle();
@@ -37,26 +40,20 @@ public class NumberGenerateActivity extends BaseTitleBarActivity {
 
     @Override
     public void initTitleBar(BaseTitleBar titleBar) {
-        titleBar.setTitleText("随机摇号");
+        titleBar.setTitleText("胆码选择");
     }
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_number_generate;
+        return R.layout.activity_number_base;
     }
 
     @Override
     protected void init() {
-        spGenerateCount = findView(R.id.spGenerateCount);
-        SpinnerAdapter spinnerAdapter = new ArrayAdapter(this, R.layout.item_spinner_array,
-                new String[]{"1 注", "2 注", "5 注", "10 注", "20 注", "50 注"});
-        spGenerateCount.setAdapter(spinnerAdapter);
+        rvBaseList = findView(R.id.rvBaseList);
     }
 
     @Override
     protected void setListener() {
-        ClickView(findView(R.id.llNumberBase))
-                .subscribe(o -> LaunchUtil.launchActivity(this, NumberBaseSelectActivity.class,
-                        NumberBaseSelectActivity.buildBundle(mTicketRegular)));
     }
 }

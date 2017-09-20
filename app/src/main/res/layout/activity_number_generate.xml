@@ -1,6 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/llNumberBase"
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:layout_marginTop="20px"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30px"
+            android:layout_marginRight="30px"
+            android:text="定胆："
+            android:textColor="@color/main_black_color_333333"
+            android:textSize="46px" />
+
+        <TextView
+            android:id="@+id/tvChooseNum"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="未选择"
+            android:textColor="@color/main_black_color_999999"
+            android:textSize="42px" />
+
+        <ImageView
+            android:layout_width="46px"
+            android:layout_height="46px"
+            android:src="@drawable/ic_narrow_right" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llNumberChoose"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llNumberBase"
+        android:layout_marginTop="20px"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="30px"
+            android:layout_marginRight="30px"
+            android:text="机选号码："
+            android:textColor="@color/main_black_color_333333"
+            android:textSize="46px" />
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/spGenerateCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:backgroundTint="@color/main_black_color_999999"
+            android:gravity="end"
+            android:spinnerMode="dropdown" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="30px"
+            android:text="摇出好彩头"
+            android:textColor="@color/main_black_color_999999"
+            android:textSize="46px" />
+
+        <ImageView
+            android:id="@+id/ivShake"
+            android:layout_width="46px"
+            android:layout_height="46px"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20px"
+            android:src="@drawable/ic_shake"
+            android:tint="@color/main_black_color_999999" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvNumberResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llNumberChoose"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:layout_marginTop="30px"
+        android:background="@color/white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="180px"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/white"
+        android:paddingBottom="30px"
+        android:paddingLeft="30px"
+        android:paddingRight="30px"
+        android:paddingTop="30px">
+
+        <com.standards.library.widget.ClickTextView
+            android:id="@+id/tvClear"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_margin="8px"
+            android:layout_weight="1"
+            android:background="@drawable/corner16_red"
+            android:gravity="center"
+            android:text="清空"
+            android:textColor="@color/white"
+            android:textSize="46px" />
+
+        <com.standards.library.widget.ClickTextView
+            android:id="@+id/tvCopy"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_margin="8px"
+            android:layout_weight="1"
+            android:background="@drawable/corner16_red"
+            android:gravity="center"
+            android:text="复制"
+            android:textColor="@color/white"
+            android:textSize="46px" />
+
+        <com.standards.library.widget.ClickTextView
+            android:id="@+id/tvSave"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_margin="8px"
+            android:layout_weight="1"
+            android:background="@drawable/corner16_red"
+            android:gravity="center"
+            android:text="保存"
+            android:textColor="@color/white"
+            android:textSize="46px" />
+
+    </LinearLayout>
+</RelativeLayout>

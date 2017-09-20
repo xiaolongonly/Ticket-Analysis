@@ -13,11 +13,14 @@ import cn.xiaolong.ticketsystem.adapter.OpenCodeAdapter;
 import cn.xiaolong.ticketsystem.base.BaseTitleBar;
 import cn.xiaolong.ticketsystem.base.BaseTitleBarActivity;
 import cn.xiaolong.ticketsystem.bean.TicketOpenData;
+import cn.xiaolong.ticketsystem.bean.TicketRegular;
 import cn.xiaolong.ticketsystem.bean.TicketType;
+import cn.xiaolong.ticketsystem.manager.TicketRegularManager;
 import cn.xiaolong.ticketsystem.presenter.OpenResultPresenter;
 import cn.xiaolong.ticketsystem.presenter.view.IOpenResultView;
 import cn.xiaolong.ticketsystem.ui.trendanalysis.AverageSimulateActivity;
 import cn.xiaolong.ticketsystem.ui.trendanalysis.AvgAnalysisActivity;
+import cn.xiaolong.ticketsystem.ui.trendanalysis.NumberGenerateActivity;
 import cn.xiaolong.ticketsystem.ui.trendanalysis.NumberRateActivity;
 import cn.xiaolong.ticketsystem.ui.trendanalysis.ParityTrendActivity;
 import cn.xiaolong.ticketsystem.ui.trendanalysis.SumAnalysisActivity;
@@ -82,6 +85,7 @@ public class OpenResultActivity extends BaseTitleBarActivity<OpenResultPresenter
         if (mTicketType != null) {
             tvTitle.setText(mTicketType.descr);
             mPresenter.getSingleOpenResult(mTicketType.code, "");
+            mPresenter.getRegularCache(mTicketType.code);
         }
         if (mTicketOpenData != null) {
             tvTitle.setText(mTicketOpenData.name);
@@ -123,6 +127,7 @@ public class OpenResultActivity extends BaseTitleBarActivity<OpenResultPresenter
                         NumberRateActivity.buildBundle(mTicketType)));
         ClickView(findView(R.id.tvAvgSimulate))
                 .subscribe(o -> LaunchUtil.launchActivity(this, AverageSimulateActivity.class));
+
     }
 
     @Override
@@ -132,5 +137,12 @@ public class OpenResultActivity extends BaseTitleBarActivity<OpenResultPresenter
         rvOpenResult.setAdapter(openCodeAdapter);
         tvOpenTime.setText("开奖日期：" + TimeUtils.milliseconds2String(ticketOpenData.timestamp * 1000));
         tvOpenSerial.setText("第" + ticketOpenData.expect + "期");
+    }
+
+    @Override
+    public void getRegularSuccess(TicketRegular ticketRegular) {
+        ClickView(findView(R.id.tvRandomNum))
+                .subscribe(o -> LaunchUtil.launchActivity(this, NumberGenerateActivity.class,
+                        NumberGenerateActivity.buildBundle(ticketRegular)));
     }
 }

@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-   >
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -49,21 +47,12 @@
             android:inputType="number"
             android:maxLength="7" />
 
-        <!--<EditText-->
-        <!--android:id="@+id/etTaskNum"-->
-        <!--android:layout_width="40dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:gravity="center"-->
-        <!--android:hint="0-8"-->
-        <!--android:inputType="number"-->
-        <!--android:maxLength="2" />-->
-
-        <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center_vertical"-->
-        <!--android:text="线程" />-->
-
+        <CheckBox
+            android:id="@+id/cbRepeat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="是否重复"
+            android:textColor="@color/main_normal_black_color" />
     </LinearLayout>
 
     <EditText
@@ -95,17 +84,4 @@
         android:text="平均："
         android:textColor="@color/colorPrimary" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/tvData"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:lineSpacingExtra="1dp"
-            android:textColor="#000000"
-            android:textSize="16dp" />
-
-    </ScrollView>
 </LinearLayout>

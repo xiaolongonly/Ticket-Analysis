@@ -1,6 +1,5 @@
 package cn.xiaolong.ticketsystem.ui.trendanalysis;
 
-import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -8,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.inputmethod.EditorInfo;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,21 +21,20 @@ import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import cn.xiaolong.ticketsystem.R;
+import cn.xiaolong.ticketsystem.adapter.NumberListAdapter;
 import cn.xiaolong.ticketsystem.base.BaseTitleBar;
 import cn.xiaolong.ticketsystem.base.BaseTitleBarActivity;
 import cn.xiaolong.ticketsystem.thread.DefaultThreadFactory;
 import cn.xiaolong.ticketsystem.thread.TicketRandomRunnable;
-import cn.xiaolong.ticketsystem.adapter.NumberListAdapter;
-import cn.xiaolong.ticketsystem.R;
 
 public class AverageSimulateActivity extends BaseTitleBarActivity {
     private TextView tvGenerate;
-    private TextView tvData;
     private EditText etAllNum;
     private EditText etChooseSize;
     private EditText etGenerateNum;
-
     private EditText etNumberEdit;
+    private CheckBox cbRepeat;
     private TextView tvAvg;
     private RecyclerView rvInitData;
     private List<Integer> numberList = new ArrayList<>();
@@ -57,7 +56,7 @@ public class AverageSimulateActivity extends BaseTitleBarActivity {
         etGenerateNum = (EditText) findViewById(R.id.etGenerateNum);
         tvGenerate = (TextView) findViewById(R.id.tvGenerate);
         tvAvg = (TextView) findViewById(R.id.tvAvg);
-        tvData = (TextView) findViewById(R.id.tvData);
+        cbRepeat = findView(R.id.cbRepeat);
         etNumberEdit = (EditText) findViewById(R.id.etNumberEdit);
         rvInitData = (RecyclerView) findViewById(R.id.rvInitData);
         numberListAdapter = new NumberListAdapter(this, numberList);
@@ -89,20 +88,20 @@ public class AverageSimulateActivity extends BaseTitleBarActivity {
             tvGenerate.setEnabled(false);
             calculateData(numberList, TextUtils.isEmpty(etAllNum.getText().toString()) ? "0" : etAllNum.getText().toString(),
                     TextUtils.isEmpty(etChooseSize.getText().toString()) ? "0" : etChooseSize.getText().toString(),
-                    TextUtils.isEmpty(etGenerateNum.getText().toString()) ? "0" : etGenerateNum.getText().toString());
+                    TextUtils.isEmpty(etGenerateNum.getText().toString()) ? "0" : etGenerateNum.getText().toString(), cbRepeat.isChecked());
         });
     }
 
-    private void calculateData(List<Integer> numberList, String allNum, String chooseSize, String generateSize) {
+    private void calculateData(List<Integer> numberList, String allNum, String chooseSize, String generateSize, boolean selected) {
         final int cores = Math.max(1, Runtime.getRuntime().availableProcessors());
         final ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(cores, cores, 0, TimeUnit.MILLISECONDS, new PriorityBlockingQueue<Runnable>(), new DefaultThreadFactory());
         Handler handler = getHandler(cores);
         int generateTaskSize = Integer.valueOf(generateSize);
         List<Integer> tasks = taskDivider(generateTaskSize, cores);
         //run all thread
-        showLoading();
+        showLoadingDialog("正在拼命计算中", false);
         for (int i = 0; i < cores; i++) {
-            runTask(threadPoolExecutor, handler, allNum, chooseSize, tasks.get(i), numberList);
+            runTask(threadPoolExecutor, handler, allNum, chooseSize, tasks.get(i), numberList,selected);
         }
     }
 
@@ -124,19 +123,24 @@ public class AverageSimulateActivity extends BaseTitleBarActivity {
         return tasks;
     }
 
+    /**
+     * handler 消息处理，这边将每个线程最终计算的均值再取平均。得到真实的平均
+     *
+     * @param cores
+     * @return
+     */
     private Handler getHandler(final int cores) {
+
         Handler handler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
                 Bundle bundle = msg.getData();
-//                sb.append(bundle.getString("resultStr"));
                 avg += bundle.getDouble("avg");
                 taskCount--;
                 if (taskCount == 0) {
                     tvAvg.setText("平均值：" + (avg / cores));
                     avg = 0;
-//                    sb = new StringBuilder();
                     taskCount = 0;
                     tvGenerate.setEnabled(true);
                     hideLoading();
@@ -148,9 +152,9 @@ public class AverageSimulateActivity extends BaseTitleBarActivity {
     }
 
     private void runTask(ThreadPoolExecutor threadPoolExecutor, Handler handler, String allNum,
-                         String chooseSize, int threadTask, List<Integer> numberList) {
+                         String chooseSize, int threadTask, List<Integer> numberList, boolean selected) {
         threadPoolExecutor.execute(new TicketRandomRunnable(handler, Integer.valueOf(allNum),
-                Integer.valueOf(chooseSize), threadTask, numberList));
+                Integer.valueOf(chooseSize), threadTask, numberList,selected));
         taskCount++;
     }
 

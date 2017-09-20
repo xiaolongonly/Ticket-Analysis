@@ -2,6 +2,8 @@ package cn.xiaolong.ticketsystem.bean;
 
 import com.standards.library.model.BaseInfo;
 
+import java.io.Serializable;
+
 /**
  * @author xiaolong
  * @version v1.0
@@ -9,7 +11,7 @@ import com.standards.library.model.BaseInfo;
  * @date: 2017/9/19 16:21
  */
 
-public class TicketRegular extends BaseInfo {
+public class TicketRegular extends BaseInfo implements Serializable{
 
     public String codeDis;  //号码范围
     public String regular; //选码规则

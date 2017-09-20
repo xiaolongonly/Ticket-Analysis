@@ -2,6 +2,7 @@ package cn.xiaolong.ticketsystem.presenter.view;
 
 import cn.xiaolong.ticketsystem.base.ILoadingView;
 import cn.xiaolong.ticketsystem.bean.TicketOpenData;
+import cn.xiaolong.ticketsystem.bean.TicketRegular;
 
 /**
  * @author xiaolong
@@ -12,4 +13,6 @@ import cn.xiaolong.ticketsystem.bean.TicketOpenData;
 
 public interface IOpenResultView extends ILoadingView {
     void getSingleOpenResultSuccess(TicketOpenData ticketOpenData);
+
+    void getRegularSuccess(TicketRegular ticketRegular);
 }

@@ -25,7 +25,7 @@ public class TicketRandomRunnable implements Runnable {
     /**
      * 默认随机量/条
      */
-    public static final int DEFAULT_TASK_SIZE = 1000000;
+    public static final int DEFAULT_TASK_SIZE = 1;
     /**
      * 默认选择数/个
      */
@@ -44,24 +44,27 @@ public class TicketRandomRunnable implements Runnable {
     private int defaultSize;
     private List<Integer> initData;
     private int defaultSum;
+    private boolean isRepeat;
 
     public TicketRandomRunnable(Handler mHandler) {
-        this(mHandler, DEFAULT_ALL_NUM, DEFAULT_CHOOSE_SIZE, DEFAULT_TASK_SIZE, new ArrayList<Integer>());
+        this(mHandler, DEFAULT_ALL_NUM, DEFAULT_CHOOSE_SIZE, DEFAULT_TASK_SIZE, new ArrayList<Integer>(), false);
     }
 
-    public TicketRandomRunnable(Handler handler, int allNum, int size, int generateTaskSize, List<Integer> currentNumber) {
+    public TicketRandomRunnable(Handler handler, int allNum, int size, int generateTaskSize, List<Integer> currentNumber, boolean selected) {
         mHandler = handler;
         this.randomNum = (generateTaskSize == 0 ? DEFAULT_TASK_SIZE : generateTaskSize);
         this.chooseSize = size == 0 ? DEFAULT_CHOOSE_SIZE : size;
         this.allNum = allNum == 0 ? DEFAULT_ALL_NUM : allNum;
+        if (selected) {
+            this.allNum++;
+        }
         random = new Random();
-//        numContainer = deepCopy(currentNumber);
         numContainer = new ArrayList<>();
         initData = currentNumber;
         copyData(numContainer, currentNumber);
         defaultSize = currentNumber.size();
         defaultSum = getDefaultSum(currentNumber);
-
+        isRepeat = selected;
     }
 
     private int getDefaultSum(List<Integer> currentNumber) {
@@ -82,45 +85,41 @@ public class TicketRandomRunnable implements Runnable {
 
     @Override
     public void run() {
-//        StringBuilder data = new StringBuilder("");
         double sum = 0;
         for (int l = 0; l < randomNum; l++) {
-//            StringBuilder spanString = new StringBuilder("");
             sum += defaultSum;
             while (numContainer.size() < chooseSize) {
-                int number = numRandom(allNum);
-                if (!numContainer.contains(number)) {
+                if (!isRepeat) {
+                    int number = numRandom(allNum, 1);
+                    if (!numContainer.contains(number)) {
+                        numContainer.add(numRandom(allNum, 1));
+                        sum += number;
+                    }
+                } else {
+                    int number = numRandom(allNum, 0);
                     numContainer.add(number);
                     sum += number;
-//                    if (data.length() > 10000) {
-//                        return;
-//                    }
-//                    spanString.append(number).append(",");
                 }
             }
-//            spanString = spanString.deleteCharAt(spanString.length() - 1).append("\n");
             if (defaultSize > 0) {
                 copyData(numContainer, initData);
             } else {
                 numContainer.clear();
             }
-//            data.append(spanString);
         }
-        handMessage(sum, "");
-
+        handMessage(sum);
     }
 
-    private void handMessage(double sum, String resultStr) {
+    private void handMessage(double sum) {
         Bundle bundle = new Bundle();
-        bundle.putString("resultStr", resultStr);
         bundle.putDouble("avg", sum / randomNum);
         Message message = new Message();
         message.setData(bundle);
         mHandler.sendMessage(message);
     }
 
-    public int numRandom(int range) {
-        return random.nextInt(range) + 1;
+    public int numRandom(int range, int start) {
+        return random.nextInt(range) + start;
     }
 
 
