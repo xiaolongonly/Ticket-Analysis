@@ -67,7 +67,6 @@ public class AverageSimulateActivity extends BaseTitleBarActivity {
 
     @Override
     protected void setListener() {
-
         etNumberEdit.setOnEditorActionListener((v, actionId, event) -> {
             if (TextUtils.isEmpty(etNumberEdit.getText())) {
                 return true;

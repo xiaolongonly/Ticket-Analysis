@@ -2,12 +2,15 @@ package cn.xiaolong.ticketsystem.ui.trendanalysis;
 
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatSpinner;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.SpinnerAdapter;
 
 import cn.xiaolong.ticketsystem.R;
+import cn.xiaolong.ticketsystem.adapter.NumberBaseAdapter;
+import cn.xiaolong.ticketsystem.adapter.NumberListAdapter;
 import cn.xiaolong.ticketsystem.base.BaseTitleBar;
 import cn.xiaolong.ticketsystem.base.BaseTitleBarActivity;
 import cn.xiaolong.ticketsystem.bean.TicketRegular;
@@ -25,6 +28,7 @@ public class NumberBaseSelectActivity extends BaseTitleBarActivity {
     private TicketRegular mTicketRegular;
     private LinearLayout llNumChoose;
     private RecyclerView rvBaseList;
+    private NumberBaseAdapter numberBaseAdapter;
 
     public static Bundle buildBundle(TicketRegular ticketRegular) {
         Bundle bundle = new Bundle();
@@ -51,6 +55,9 @@ public class NumberBaseSelectActivity extends BaseTitleBarActivity {
     @Override
     protected void init() {
         rvBaseList = findView(R.id.rvBaseList);
+        numberBaseAdapter = new NumberBaseAdapter(this, mTicketRegular);
+        rvBaseList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        rvBaseList.setAdapter(numberBaseAdapter);
     }
 
     @Override
