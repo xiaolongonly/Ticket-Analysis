@@ -19,7 +19,7 @@ import rx.Observable;
  */
 public class DataManager extends ResponseHandle {
 
-    //获取appId
+    //获取所有彩票列表
     public static Observable<ListData<TicketType>> getTicketList() {
         return Dao.getApiService().getTicketList(null)
                 .flatMap(newEntityData())

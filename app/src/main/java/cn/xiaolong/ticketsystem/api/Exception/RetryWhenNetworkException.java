@@ -2,6 +2,8 @@ package cn.xiaolong.ticketsystem.api.Exception;
 
 import android.util.Log;
 
+import com.standards.library.app.AppContext;
+
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.util.concurrent.TimeUnit;
@@ -17,11 +19,11 @@ import rx.functions.Func2;
  * @function <描述功能>
  */
 public class RetryWhenNetworkException implements Func1<Observable<? extends Throwable>, Observable<?>> {
-//    retry次数
+    //    retry次数
     private int count = 3;
-//    延迟
+    //    延迟
     private long delay = 3000;
-//    叠加延迟
+    //    叠加延迟
     private long increaseDelay = 3000;
 
     public RetryWhenNetworkException() {
@@ -52,9 +54,8 @@ public class RetryWhenNetworkException implements Func1<Observable<? extends Thr
                             || wrapper.throwable instanceof SocketTimeoutException
                             || wrapper.throwable instanceof TimeoutException)
                             && wrapper.index < count + 1) { //如果超出重试次数也抛出错误，否则默认是会进入onCompleted
-                        Log.e("tag","retry---->"+wrapper.index);
+                        Log.e("tag", "retry---->" + wrapper.index);
                         return Observable.timer(delay + (wrapper.index - 1) * increaseDelay, TimeUnit.MILLISECONDS);
-
                     }
                     return Observable.error(wrapper.throwable);
                 });

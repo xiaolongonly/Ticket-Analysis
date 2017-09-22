@@ -25,8 +25,8 @@
             android:layout_width="0px"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="未选择"
-            android:textColor="@color/main_black_color_999999"
+            android:hint="未选择"
+            android:textColor="@color/main_red_color"
             android:textSize="42px" />
 
         <ImageView

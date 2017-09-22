@@ -31,13 +31,14 @@ public class ResponseHandle {
     public static <T> Func1<Throwable, Observable<? extends T>> errorResumeFunc() {
         return throwable -> {
             if (throwable instanceof UnknownHostException || throwable instanceof JsonParseException) {
+                if (!AppContext.isNetworkAvailable()) {
+                    return Observable.error(new ErrorThrowable(ReturnCode.LOCAL_NO_NETWORK, AppContext.getContext().getString(R.string.load_no_network)));
+                }
                 return Observable.error(new ErrorThrowable(ReturnCode.LOCAL_ERROR_TYPE_ERROR, BuildConfig.DEBUG_LOG ? throwable.toString() : AppContext.getString(R.string.load_system_busy)));
             } else if (throwable instanceof SocketTimeoutException || throwable instanceof ConnectException) {
                 return Observable.error(new ErrorThrowable(ReturnCode.LOCAL_TIMEOUT_ERROR, BuildConfig.DEBUG_LOG ? throwable.toString() : AppContext.getString(R.string.load_time_out)));
-            } else if (throwable instanceof NoNetWorkException) {
-                return Observable.error(new ErrorThrowable(ReturnCode.LOCAL_NO_NETWORK, AppContext.getContext().getString(R.string.load_no_network)));
             } else if (throwable instanceof ErrorThrowable) {
-                return Observable.error(throwable);
+                Observable.error(throwable);
             }
             return Observable.error(new ErrorThrowable(ReturnCode.LOCAL_UNKNOWN_ERROR, BuildConfig.DEBUG_LOG ? throwable.toString() : AppContext.getString(R.string.load_system_busy)));
         };
@@ -89,5 +90,6 @@ public class ResponseHandle {
                 .retryWhen(new RetryWhenNetworkException())
                 .observeOn(AndroidSchedulers.mainThread());
     }
+
 
 }

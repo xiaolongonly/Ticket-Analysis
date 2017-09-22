@@ -11,10 +11,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.standards.library.listview.adapter.LoadMoreRecycleAdapter;
+import com.standards.library.model.ListData;
+import com.standards.library.rx.CSubscriber;
+import com.standards.library.rx.ErrorThrowable;
 import com.standards.library.util.TimeUtils;
+import com.standards.library.util.ToastUtil;
 
 import cn.xiaolong.ticketsystem.R;
 import cn.xiaolong.ticketsystem.api.DataManager;
+import cn.xiaolong.ticketsystem.bean.TicketOpenData;
 import cn.xiaolong.ticketsystem.bean.TicketType;
 
 /**
@@ -59,12 +64,25 @@ public class TicketRecentOpenAdapter extends LoadMoreRecycleAdapter<TicketType, 
 
         public void setData(TicketType typeInfo, int realPosition) {
             tvTicketName.setText(typeInfo.descr);
-            DataManager.getSinglePeroidCheck(typeInfo.code, "").subscribe(ticketOpenDataListData -> {
-                tvOpenTime.setText("开奖时间：" + TimeUtils.milliseconds2String(ticketOpenDataListData.list.get(0).timestamp * 1000));
-                tvTime.setText("第" + ticketOpenDataListData.list.get(0).expect + "期");
-                OpenCodeAdapter openCodeAdapter = new OpenCodeAdapter(mContext, ticketOpenDataListData.list.get(0).openCode);
-                rvOpenResult.setLayoutManager(new GridLayoutManager(mContext, 7));
-                rvOpenResult.setAdapter(openCodeAdapter);
+            DataManager.getSinglePeroidCheck(typeInfo.code, "").subscribe(new CSubscriber<ListData<TicketOpenData>>() {
+                @Override
+                public void onPrepare() {
+
+                }
+
+                @Override
+                public void onError(ErrorThrowable throwable) {
+                    ToastUtil.showToast(throwable.msg);
+                }
+
+                @Override
+                public void onSuccess(ListData<TicketOpenData> ticketOpenDataListData) {
+                    tvOpenTime.setText("开奖时间：" + TimeUtils.milliseconds2String(ticketOpenDataListData.list.get(0).timestamp * 1000));
+                    tvTime.setText("第" + ticketOpenDataListData.list.get(0).expect + "期");
+                    OpenCodeAdapter openCodeAdapter = new OpenCodeAdapter(mContext, ticketOpenDataListData.list.get(0).openCode);
+                    rvOpenResult.setLayoutManager(new GridLayoutManager(mContext, 7));
+                    rvOpenResult.setAdapter(openCodeAdapter);
+                }
             });
             itemView.findViewById(R.id.rlBottom).setOnClickListener(v -> {
                 if (mOnItemClickListener != null) {

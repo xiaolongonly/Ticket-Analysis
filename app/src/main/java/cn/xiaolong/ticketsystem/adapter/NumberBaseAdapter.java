@@ -32,18 +32,16 @@ public class NumberBaseAdapter extends RecyclerView.Adapter<NumberBaseAdapter.Vi
     private List<Pair<Integer, Integer>> codeDis; //号码分布  分为start的范围 和end的范围 first 1 second 25
     private List<String> specialCode; //这里的特别码用来做映射显示
     private List<Integer> codeSize; //需要多少个号码
-
-    private List<String> speciaCodelList;
-    private List<String> normalCodeList;
-
+    private List<CodeForChooseAdapter> mCodeForChooseAdapters;
     private List<List<String>> selectedList;
 
-    public NumberBaseAdapter(Context context, TicketRegular ticketRegular) {
+    public NumberBaseAdapter(Context context, TicketRegular ticketRegular, List<List<String>> numberBaseList) {
         mContext = context;
         isRepeat = ticketRegular.repeat;
         codeDis = getCodeDis(ticketRegular.codeDis);
         specialCode = getSpecialCode(ticketRegular.special);
         codeSize = getCodeSize(ticketRegular.regular);
+        mCodeForChooseAdapters = new ArrayList<>();
         if (codeSize.size() < 1 && !isRepeat) {
             type = TYPE_NORMAL;
         }
@@ -56,7 +54,7 @@ public class NumberBaseAdapter extends RecyclerView.Adapter<NumberBaseAdapter.Vi
         if (codeSize.size() > 1 && isRepeat) {
             type = TYPE_REPEAT_WITH_SPECIAL;
         }
-        selectedList = new ArrayList<>();
+        selectedList = numberBaseList == null ? new ArrayList<>() : numberBaseList;
     }
 
 
@@ -67,6 +65,10 @@ public class NumberBaseAdapter extends RecyclerView.Adapter<NumberBaseAdapter.Vi
             codeSize.add(Integer.valueOf(size));
         }
         return codeSize;
+    }
+
+    public List<List<String>> getSelectedList() {
+        return selectedList;
     }
 
     private List<String> getSpecialCode(String special) {
@@ -100,27 +102,27 @@ public class NumberBaseAdapter extends RecyclerView.Adapter<NumberBaseAdapter.Vi
     public void onBindViewHolder(ViewHolder holder, int position) {
         switch (type) {
             case TYPE_NORMAL:
-                holder.setData(codeDis.get(0), codeSize.get(0), false, position);
+                holder.setData(codeDis.get(0), codeSize.get(0), false, position, type);
                 break;
             case TYPE_REPEAT:
-                holder.setData(codeDis.get(0), codeSize.size(), false, position);
+                holder.setData(codeDis.get(0), codeSize.size(), false, position, type);
                 break;
             case TYPE_NORMAL_WITH_SPECIAL:
                 if (position < getItemCount() - 1) {
-                    holder.setData(codeDis.get(0), codeSize.get(0), false, position);
+                    holder.setData(codeDis.get(0), codeSize.get(0), false, position, type);
                 } else {
-                    holder.setData(codeDis.size() > 1 ? codeDis.get(1) : codeDis.get(0), codeSize.get(1), true, position);
+                    holder.setData(codeDis.size() > 1 ? codeDis.get(1) : codeDis.get(0), codeSize.get(1), true, position, type);
                 }
                 break;
             case TYPE_REPEAT_WITH_SPECIAL:
                 if (position < codeSize.get(0)) {
-                    holder.setData(codeDis.get(0), codeSize.size() - 1, false, position);
+                    holder.setData(codeDis.get(0), codeSize.size() - 1, false, position, type);
                 } else {
-                    holder.setData(codeDis.get(1), codeSize.size() - 1, true, position);
+                    holder.setData(codeDis.get(1), codeSize.size() - 1, true, position, type);
                 }
                 break;
             default:
-                holder.setData(codeDis.get(0), codeSize.size(), false, position);
+                holder.setData(codeDis.get(0), codeSize.size(), false, position, type);
 
         }
 
@@ -155,13 +157,13 @@ public class NumberBaseAdapter extends RecyclerView.Adapter<NumberBaseAdapter.Vi
             tvHint = (TextView) itemView.findViewById(R.id.tvHint);
         }
 
-        public void setData(final Pair<Integer, Integer> data, int size, boolean isSpecial, int position) {
-            List<String> numberList = new ArrayList<>();
+        public void setData(final Pair<Integer, Integer> data, int size, boolean isSpecial, int position, int type) {
+            List<String> numberList;
             if (!isSpecial) {
                 numberList = generateNumberList(data.first, data.second);
-                tvCodeColor.setText("红球");
+                tvCodeColor.setText("红球" + (position + 1));
             } else {
-                tvCodeColor.setText("蓝球");
+                tvCodeColor.setText("特别码" + (position + 1));
                 if (specialCode != null && specialCode.size() > 0) {
                     numberList = specialCode;
                 } else {
@@ -173,7 +175,20 @@ public class NumberBaseAdapter extends RecyclerView.Adapter<NumberBaseAdapter.Vi
             }
             tvHint.setText("可选0~" + size + "个码");
             rvCodes.setLayoutManager(new GridLayoutManager(mContext, 7));
-            rvCodes.setAdapter(new CodeForChooseAdapter(mContext, numberList, isSpecial, size,selectedList.get(position)));
+            CodeForChooseAdapter codeForChooseAdapter;
+            if (type == TYPE_NORMAL_WITH_SPECIAL && codeDis.size() <= 1) {
+                codeForChooseAdapter = new CodeForChooseAdapter(mContext, numberList, isSpecial, size, position, selectedList);
+                codeForChooseAdapter.setOnClickListener(v -> {
+                    for (int i = 0; i < mCodeForChooseAdapters.size(); i++) {
+                        mCodeForChooseAdapters.get(i).notifyDataSetChanged();
+                    }
+                });
+            } else {
+                codeForChooseAdapter = new CodeForChooseAdapter(mContext, numberList, isSpecial, size, selectedList.get(position));
+            }
+
+            mCodeForChooseAdapters.add(codeForChooseAdapter);
+            rvCodes.setAdapter(codeForChooseAdapter);
         }
 
         private List<String> generateNumberList(Integer first, Integer second) {
