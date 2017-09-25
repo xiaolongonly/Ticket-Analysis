@@ -64,13 +64,14 @@
             android:spinnerMode="dropdown" />
 
         <TextView
+            android:id="@+id/tvShake"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="30px"
             android:text="摇出好彩头"
             android:textColor="@color/main_black_color_999999"
-            android:textSize="46px" />
+            android:textSize="38px" />
 
         <ImageView
             android:id="@+id/ivShake"
@@ -86,6 +87,7 @@
         android:id="@+id/rvNumberResult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/llBottom"
         android:layout_below="@+id/llNumberChoose"
         android:layout_marginLeft="30px"
         android:layout_marginRight="30px"
@@ -93,6 +95,7 @@
         android:background="@color/white" />
 
     <LinearLayout
+        android:id="@+id/llBottom"
         android:layout_width="match_parent"
         android:layout_height="180px"
         android:layout_alignParentBottom="true"

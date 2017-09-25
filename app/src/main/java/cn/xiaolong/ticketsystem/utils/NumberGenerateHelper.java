@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 import cn.xiaolong.ticketsystem.bean.TicketRegular;
+import rx.Observable;
 
 /**
  * @author xiaolong
@@ -33,7 +34,7 @@ public class NumberGenerateHelper {
     }
 
 
-    public String generateNumberGroup(List<List<String>> numberBase) {
+    public Observable<String> generateNumberGroup(List<List<String>> numberBase) {
         List<String> baseCode = new ArrayList<>();
 
         int codeSize = 0;
@@ -78,6 +79,6 @@ public class NumberGenerateHelper {
             result += "+";
         }
         LogUtil.d(result);
-        return result.substring(0, result.length() - 1);
+        return Observable.just(result.substring(0, result.length() - 1));
     }
 }
