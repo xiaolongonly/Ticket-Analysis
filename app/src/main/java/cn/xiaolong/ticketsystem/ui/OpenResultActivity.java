@@ -15,13 +15,12 @@ import cn.xiaolong.ticketsystem.base.BaseTitleBarActivity;
 import cn.xiaolong.ticketsystem.bean.TicketOpenData;
 import cn.xiaolong.ticketsystem.bean.TicketRegular;
 import cn.xiaolong.ticketsystem.bean.TicketType;
-import cn.xiaolong.ticketsystem.manager.TicketRegularManager;
 import cn.xiaolong.ticketsystem.presenter.OpenResultPresenter;
 import cn.xiaolong.ticketsystem.presenter.view.IOpenResultView;
 import cn.xiaolong.ticketsystem.ui.trendanalysis.AverageSimulateActivity;
 import cn.xiaolong.ticketsystem.ui.trendanalysis.AvgAnalysisActivity;
-import cn.xiaolong.ticketsystem.ui.trendanalysis.NumberGenerateActivity;
-import cn.xiaolong.ticketsystem.ui.trendanalysis.NumberRateActivity;
+import cn.xiaolong.ticketsystem.ui.trendanalysis.CodeGenerateActivity;
+import cn.xiaolong.ticketsystem.ui.trendanalysis.CodeRateActivity;
 import cn.xiaolong.ticketsystem.ui.trendanalysis.ParityTrendActivity;
 import cn.xiaolong.ticketsystem.ui.trendanalysis.SumAnalysisActivity;
 import cn.xiaolong.ticketsystem.utils.LaunchUtil;
@@ -123,8 +122,8 @@ public class OpenResultActivity extends BaseTitleBarActivity<OpenResultPresenter
                         SumAnalysisActivity.buildBundle(mTicketType)));
 
         ClickView(findView(R.id.tvNumRate))
-                .subscribe(o -> LaunchUtil.launchActivity(this, NumberRateActivity.class,
-                        NumberRateActivity.buildBundle(mTicketType)));
+                .subscribe(o -> LaunchUtil.launchActivity(this, CodeRateActivity.class,
+                        CodeRateActivity.buildBundle(mTicketType)));
         ClickView(findView(R.id.tvAvgSimulate))
                 .subscribe(o -> LaunchUtil.launchActivity(this, AverageSimulateActivity.class));
 
@@ -142,7 +141,7 @@ public class OpenResultActivity extends BaseTitleBarActivity<OpenResultPresenter
     @Override
     public void getRegularSuccess(TicketRegular ticketRegular) {
         ClickView(findView(R.id.tvRandomNum))
-                .subscribe(o -> LaunchUtil.launchActivity(this, NumberGenerateActivity.class,
-                        NumberGenerateActivity.buildBundle(ticketRegular)));
+                .subscribe(o -> LaunchUtil.launchActivity(this, CodeGenerateActivity.class,
+                        CodeGenerateActivity.buildBundle(ticketRegular)));
     }
 }

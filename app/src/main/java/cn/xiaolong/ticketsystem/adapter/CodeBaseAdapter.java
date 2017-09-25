@@ -21,7 +21,7 @@ import cn.xiaolong.ticketsystem.bean.TicketRegular;
  * @data: 2016/8/9 11:18
  * @version: V1.0
  */
-public class NumberBaseAdapter extends RecyclerView.Adapter<NumberBaseAdapter.ViewHolder> {
+public class CodeBaseAdapter extends RecyclerView.Adapter<CodeBaseAdapter.ViewHolder> {
     public static final int TYPE_NORMAL = 0; //第一种情况 只需要一个选择器，可供选择的大小为Size
     public static final int TYPE_REPEAT = 1;//第二种情况，每个号码一个选择器
     public static final int TYPE_NORMAL_WITH_SPECIAL = 2; //第三种情况  需要两个选择器  - - 这边只做了特别号码只有一种的情况。艾玛 不多做好看vle
@@ -35,7 +35,7 @@ public class NumberBaseAdapter extends RecyclerView.Adapter<NumberBaseAdapter.Vi
     private List<CodeForChooseAdapter> mCodeForChooseAdapters;
     private List<List<String>> selectedList;
 
-    public NumberBaseAdapter(Context context, TicketRegular ticketRegular, List<List<String>> numberBaseList) {
+    public CodeBaseAdapter(Context context, TicketRegular ticketRegular, List<List<String>> numberBaseList) {
         mContext = context;
         isRepeat = ticketRegular.repeat;
         codeDis = getCodeDis(ticketRegular.codeDis);

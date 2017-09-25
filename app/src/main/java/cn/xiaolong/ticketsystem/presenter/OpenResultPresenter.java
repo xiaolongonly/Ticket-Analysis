@@ -2,14 +2,11 @@ package cn.xiaolong.ticketsystem.presenter;
 
 import android.app.Activity;
 
-import cn.xiaolong.ticketsystem.R;
 import cn.xiaolong.ticketsystem.api.DataManager;
 import cn.xiaolong.ticketsystem.base.BasePresenter;
 import cn.xiaolong.ticketsystem.bean.TicketRegular;
 import cn.xiaolong.ticketsystem.manager.TicketRegularManager;
 import cn.xiaolong.ticketsystem.presenter.view.IOpenResultView;
-import cn.xiaolong.ticketsystem.ui.trendanalysis.NumberGenerateActivity;
-import cn.xiaolong.ticketsystem.utils.LaunchUtil;
 
 /**
  * @author xiaolong

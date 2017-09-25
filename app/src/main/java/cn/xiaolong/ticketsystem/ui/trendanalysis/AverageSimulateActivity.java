@@ -22,7 +22,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 import cn.xiaolong.ticketsystem.R;
-import cn.xiaolong.ticketsystem.adapter.NumberListAdapter;
+import cn.xiaolong.ticketsystem.adapter.CodeListAdapter;
 import cn.xiaolong.ticketsystem.base.BaseTitleBar;
 import cn.xiaolong.ticketsystem.base.BaseTitleBarActivity;
 import cn.xiaolong.ticketsystem.thread.DefaultThreadFactory;
@@ -38,7 +38,7 @@ public class AverageSimulateActivity extends BaseTitleBarActivity {
     private TextView tvAvg;
     private RecyclerView rvInitData;
     private List<Integer> numberList = new ArrayList<>();
-    private NumberListAdapter numberListAdapter;
+    private CodeListAdapter codeListAdapter;
     private double avg;
     private int taskCount = 0;
     private ImageView ivRight;
@@ -59,9 +59,9 @@ public class AverageSimulateActivity extends BaseTitleBarActivity {
         cbRepeat = findView(R.id.cbRepeat);
         etNumberEdit = (EditText) findViewById(R.id.etNumberEdit);
         rvInitData = (RecyclerView) findViewById(R.id.rvInitData);
-        numberListAdapter = new NumberListAdapter(this, numberList);
+        codeListAdapter = new CodeListAdapter(this, numberList);
         rvInitData.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        rvInitData.setAdapter(numberListAdapter);
+        rvInitData.setAdapter(codeListAdapter);
 
     }
 
@@ -77,7 +77,7 @@ public class AverageSimulateActivity extends BaseTitleBarActivity {
                     return true;
                 }
                 numberList.add(Integer.valueOf(etNumberEdit.getText().toString()));
-                numberListAdapter.notifyDataSetChanged();
+                codeListAdapter.notifyDataSetChanged();
                 etNumberEdit.setText("");
                 return true;
             }

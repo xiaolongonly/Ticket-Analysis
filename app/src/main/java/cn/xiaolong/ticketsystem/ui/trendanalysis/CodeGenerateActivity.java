@@ -21,20 +21,16 @@ import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 import com.standards.library.app.AppContext;
-import com.standards.library.util.LogUtil;
 import com.standards.library.util.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import cn.xiaolong.ticketsystem.R;
-import cn.xiaolong.ticketsystem.adapter.NumberListAdapter;
 import cn.xiaolong.ticketsystem.adapter.TicketGroupListAdapter;
 import cn.xiaolong.ticketsystem.base.BaseTitleBar;
 import cn.xiaolong.ticketsystem.base.BaseTitleBarActivity;
@@ -42,8 +38,6 @@ import cn.xiaolong.ticketsystem.bean.TicketRegular;
 import cn.xiaolong.ticketsystem.presenter.NumberGeneratePresenter;
 import cn.xiaolong.ticketsystem.presenter.view.INumberGenerateView;
 import cn.xiaolong.ticketsystem.utils.LaunchUtil;
-import cn.xiaolong.ticketsystem.utils.NumberGenerateHelper;
-import cn.xiaolong.ticketsystem.utils.SpannableStringUtil;
 
 /**
  * @author xiaolong
@@ -52,7 +46,7 @@ import cn.xiaolong.ticketsystem.utils.SpannableStringUtil;
  * @date: 2017/9/19 17:29
  */
 
-public class NumberGenerateActivity extends BaseTitleBarActivity<NumberGeneratePresenter> implements INumberGenerateView, SensorEventListener {
+public class CodeGenerateActivity extends BaseTitleBarActivity<NumberGeneratePresenter> implements INumberGenerateView, SensorEventListener {
 
     public static final int REQUEST_NUMBER_BASE = 0X111;
     private AppCompatSpinner spGenerateCount;
@@ -120,8 +114,8 @@ public class NumberGenerateActivity extends BaseTitleBarActivity<NumberGenerateP
     @Override
     protected void setListener() {
         ClickView(findView(R.id.llNumberBase))
-                .subscribe(o -> LaunchUtil.launchActivity(this, NumberBaseSelectActivity.class,
-                        NumberBaseSelectActivity.buildBundle(mTicketRegular, numberBase), REQUEST_NUMBER_BASE));
+                .subscribe(o -> LaunchUtil.launchActivity(this, CodeBaseSelectActivity.class,
+                        CodeBaseSelectActivity.buildBundle(mTicketRegular, numberBase), REQUEST_NUMBER_BASE));
         spGenerateCount.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -154,7 +148,7 @@ public class NumberGenerateActivity extends BaseTitleBarActivity<NumberGenerateP
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_NUMBER_BASE && resultCode == NumberBaseSelectActivity.RESULT_NUMBER_BASE) {
+        if (requestCode == REQUEST_NUMBER_BASE && resultCode == CodeBaseSelectActivity.RESULT_NUMBER_BASE) {
             numberBase = (List<List<String>>) data.getSerializableExtra("numberBase");
             int baseCount = Integer.valueOf(mTicketRegular.regular.split("\\+")[0]);
             int baseLength = 0;
@@ -225,7 +219,7 @@ public class NumberGenerateActivity extends BaseTitleBarActivity<NumberGenerateP
 
     private void shake() {
         SoundPool soundPool = new SoundPool(1, AudioManager.STREAM_SYSTEM, 5);
-        int weiChatAudio = soundPool.load(NumberGenerateActivity.this, R.raw.weichat_audio, 1);
+        int weiChatAudio = soundPool.load(CodeGenerateActivity.this, R.raw.weichat_audio, 1);
         Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
         //发出提示音
         soundPool.play(weiChatAudio, 1, 1, 0, 0, 1);

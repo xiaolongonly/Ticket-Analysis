@@ -38,7 +38,7 @@ import cn.xiaolong.ticketsystem.utils.ArrayUtil;
  * @date: 2017/9/15 11:38
  */
 
-public class NumberRateActivity extends BaseTitleBarActivity<ParityTrendPresenter> implements IParityTrendView {
+public class CodeRateActivity extends BaseTitleBarActivity<ParityTrendPresenter> implements IParityTrendView {
     private TextView tvAnalysisResult;
     private TicketType mTicketType;
     private TextView tvTitle;

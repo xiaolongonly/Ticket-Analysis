@@ -19,13 +19,13 @@ import cn.xiaolong.ticketsystem.R;
  * @data: 2016/8/9 11:18
  * @version: V1.0
  */
-public class NumberListAdapter extends RecyclerView.Adapter<NumberListAdapter.ViewHolder> {
+public class CodeListAdapter extends RecyclerView.Adapter<CodeListAdapter.ViewHolder> {
     private Context mContext;
     private List<Integer> mNumbers;
 //    private View.OnClickListener onDeleteClickListener;
 //    private View.OnClickListener onTextClickListener;
 
-    public NumberListAdapter(Context context, List<Integer> numbers) {
+    public CodeListAdapter(Context context, List<Integer> numbers) {
         mContext = context;
         mNumbers = numbers;
     }
