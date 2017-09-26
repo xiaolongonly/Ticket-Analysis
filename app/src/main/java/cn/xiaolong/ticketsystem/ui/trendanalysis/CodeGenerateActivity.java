@@ -149,7 +149,7 @@ public class CodeGenerateActivity extends BaseTitleBarActivity<NumberGeneratePre
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_NUMBER_BASE && resultCode == CodeBaseSelectActivity.RESULT_NUMBER_BASE) {
-            numberBase = (List<List<String>>) data.getSerializableExtra("numberBase");
+            numberBase = (List<List<String>>) data.getSerializableExtra("codeBase");
             int baseCount = Integer.valueOf(mTicketRegular.regular.split("\\+")[0]);
             int baseLength = 0;
             String result = "";

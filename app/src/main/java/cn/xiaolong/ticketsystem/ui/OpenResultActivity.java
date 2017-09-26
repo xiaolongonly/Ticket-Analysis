@@ -19,6 +19,7 @@ import cn.xiaolong.ticketsystem.presenter.OpenResultPresenter;
 import cn.xiaolong.ticketsystem.presenter.view.IOpenResultView;
 import cn.xiaolong.ticketsystem.ui.trendanalysis.AverageSimulateActivity;
 import cn.xiaolong.ticketsystem.ui.trendanalysis.AvgAnalysisActivity;
+import cn.xiaolong.ticketsystem.ui.trendanalysis.CodeForecastActivity;
 import cn.xiaolong.ticketsystem.ui.trendanalysis.CodeGenerateActivity;
 import cn.xiaolong.ticketsystem.ui.trendanalysis.CodeRateActivity;
 import cn.xiaolong.ticketsystem.ui.trendanalysis.ParityTrendActivity;
@@ -116,17 +117,23 @@ public class OpenResultActivity extends BaseTitleBarActivity<OpenResultPresenter
         ClickView(findView(R.id.tvAvgAnalysis))
                 .subscribe(o -> LaunchUtil.launchActivity(this, AvgAnalysisActivity.class,
                         AvgAnalysisActivity.buildBundle(mTicketType)));
-
+        /**
+         * 和值分析
+         */
         ClickView(findView(R.id.tvSumAnalysis))
                 .subscribe(o -> LaunchUtil.launchActivity(this, SumAnalysisActivity.class,
                         SumAnalysisActivity.buildBundle(mTicketType)));
-
+        /**
+         * 号码频率
+         */
         ClickView(findView(R.id.tvNumRate))
                 .subscribe(o -> LaunchUtil.launchActivity(this, CodeRateActivity.class,
                         CodeRateActivity.buildBundle(mTicketType)));
+        /**
+         * 均值演算
+         */
         ClickView(findView(R.id.tvAvgSimulate))
                 .subscribe(o -> LaunchUtil.launchActivity(this, AverageSimulateActivity.class));
-
     }
 
     @Override
@@ -143,5 +150,10 @@ public class OpenResultActivity extends BaseTitleBarActivity<OpenResultPresenter
         ClickView(findView(R.id.tvRandomNum))
                 .subscribe(o -> LaunchUtil.launchActivity(this, CodeGenerateActivity.class,
                         CodeGenerateActivity.buildBundle(ticketRegular)));
+        /**
+         * 号码预测
+         */
+        ClickView(findView(R.id.tvNumberForecast))
+                .subscribe(o -> LaunchUtil.launchActivity(this, CodeForecastActivity.class, CodeForecastActivity.buildBundle(ticketRegular)));
     }
 }

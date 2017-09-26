@@ -33,9 +33,10 @@ public class BarChartHelper {
         return sBarChartHelper;
     }
 
-    public IBarDataSet generateBarDataSet(List<BarEntry> entries, String describle, List<Integer> colors) {
-        BarDataSet dataSet = new BarDataSet(entries, describle);
+    public IBarDataSet generateBarDataSet(List<BarEntry> entries, String[] describle, List<Integer> colors) {
+        BarDataSet dataSet = new BarDataSet(entries, describle.length > 1 ? "" : describle[0]);
         dataSet.setColors(colors);
+        dataSet.setStackLabels(describle);
 //        dataSet.setValueTextSize(11f);
         int highLightColor = 0x20ffffff;
         dataSet.setHighLightColor(highLightColor);

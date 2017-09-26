@@ -16,7 +16,7 @@ import cn.xiaolong.ticketsystem.R;
 import cn.xiaolong.ticketsystem.bean.TicketRegular;
 
 /**
- * <请描述这个类是干什么的>
+ * <胆码选择适配器>
  *
  * @data: 2016/8/9 11:18
  * @version: V1.0
@@ -163,7 +163,7 @@ public class CodeBaseAdapter extends RecyclerView.Adapter<CodeBaseAdapter.ViewHo
                 numberList = generateNumberList(data.first, data.second);
                 tvCodeColor.setText("红球" + (position + 1));
             } else {
-                tvCodeColor.setText("特别码" + (position + 1));
+                tvCodeColor.setText("特别码");
                 if (specialCode != null && specialCode.size() > 0) {
                     numberList = specialCode;
                 } else {

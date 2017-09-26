@@ -104,7 +104,7 @@ public class AvgAnalysisActivity extends BaseTitleBarActivity<ParityTrendPresent
             for (int i = 0; i < codeLength; i++) {
                 colorList.add(Color.rgb(255 - divide * i, 0, 0 + divide * i));
             }
-            IBarDataSet barDataSet = BarChartHelper.getBarChartHelper().generateBarDataSet(generateEntry(list, codeLength), "均值图", colorList);
+            IBarDataSet barDataSet = BarChartHelper.getBarChartHelper().generateBarDataSet(generateEntry(list, codeLength), new String[]{"均值图"}, colorList);
             barData = new BarData(barDataSet);
             bcAvgAnalysis.setData(barData);
             bcAvgAnalysis.getXAxis().setValueFormatter((value, axis) -> {

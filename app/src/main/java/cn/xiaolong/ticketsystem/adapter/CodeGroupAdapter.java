@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.List;
+
 import cn.xiaolong.ticketsystem.R;
 
 /**
@@ -31,7 +33,6 @@ public class CodeGroupAdapter extends RecyclerView.Adapter<CodeGroupAdapter.View
         mContext = context;
         setupOpenDatas(openResult);
     }
-
 
     public void setData(String data) {
         //动态刷新，暂时用不到
