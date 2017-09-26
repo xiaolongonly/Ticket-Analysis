@@ -2,7 +2,7 @@
 [![PersonBlog](https://img.shields.io/badge/PersonBlog-@xiaolongonly-blue.svg?style=flat)](http://xiaolongonly.cn/)
 
 # 实现如下
-![image](https://github.com/xiaolongonly/Ticket-Analysis/blob/master/operate.png)
+![image](https://github.com/xiaolongonly/Ticket-Analysis/blob/master/operate.gif)
 
 初版历时半个多月
 
