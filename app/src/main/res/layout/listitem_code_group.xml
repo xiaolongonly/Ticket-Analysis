@@ -6,15 +6,19 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvCodeGroup"
-        android:layout_width="wrap_content"
+        android:layout_width="0px"
         android:layout_height="wrap_content"
+        android:layout_weight="9"
         android:padding="15px" />
 
     <com.standards.library.widget.ClickTextView
         android:id="@+id/tvOperate"
-        android:layout_width="wrap_content"
+        android:layout_marginRight="15px"
+        android:layout_width="0px"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:layout_gravity="center_vertical"
+        android:layout_weight="1"
         android:background="@drawable/corner16_white"
         android:paddingBottom="18px"
         android:paddingLeft="18px"

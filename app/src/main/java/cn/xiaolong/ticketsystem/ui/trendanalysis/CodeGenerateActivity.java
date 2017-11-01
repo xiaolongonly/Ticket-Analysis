@@ -42,7 +42,7 @@ import cn.xiaolong.ticketsystem.utils.LaunchUtil;
 /**
  * @author xiaolong
  * @version v1.0
- * @function <描述功能>
+ * @function <随机摇号>
  * @date: 2017/9/19 17:29
  */
 
