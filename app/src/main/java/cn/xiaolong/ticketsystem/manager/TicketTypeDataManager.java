@@ -12,7 +12,6 @@ import java.util.List;
 
 import cn.xiaolong.ticketsystem.BuildConfig;
 import cn.xiaolong.ticketsystem.api.DataManager;
-import cn.xiaolong.ticketsystem.api.NoCacheException;
 import cn.xiaolong.ticketsystem.bean.TicketType;
 import rx.Observable;
 

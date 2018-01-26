@@ -23,7 +23,7 @@
   {
     "codeDis": "0-9",
     "regular": "5",
-   "repeat": true,
+    "repeat": true,
     "code": "pl5",
     "descr": "排列5"
   },
@@ -218,7 +218,7 @@
   },
   {
     "special": "鼠，牛，虎，兔，龙，蛇，马，羊，猴，鸡，狗，猪",
-    "codeDis": "0-9,1-12",
+    "codeDis": "0-9,1-11",
     "regular": "6+1",
     "repeat": true,
     "code": "df6j1",

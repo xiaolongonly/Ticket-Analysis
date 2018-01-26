@@ -30,7 +30,7 @@ public class NumberGenerateHelper {
     }
 
     public int numRandom(int range, int start) {
-        return random.nextInt(range + (repeat ? 1 : 0)) + start;
+        return random.nextInt(range-start + (repeat ? 1 : 0)) + start;
     }
 
 
