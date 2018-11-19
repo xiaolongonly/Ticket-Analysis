@@ -1,6 +1,15 @@
 [![CSDN](https://img.shields.io/badge/CSDN-@xiaolongonly-blue.svg?style=flat)](http://blog.csdn.net/guoxiaolongonly)
 [![PersonBlog](https://img.shields.io/badge/PersonBlog-@xiaolongonly-blue.svg?style=flat)](http://xiaolongonly.cn/)
 
+## 2018年11月19日 10:59:14更新
+
+	最近有人反馈项目不能用了，我做了一个版本的更新。
+	
+	这个项目只是一个给开发者演示的demo项目。希望大家不要直接拿这个项目做商业用途。
+	由于旧版本密钥可能被拿去商业化，目前调用频繁，现在更新了密钥，APP能正常使用，由于调用次数有限，如果大家对API有兴趣的话可以到万维易源平台https://www.showapi.com/api/view/44 申请一个属于自己的API，不要使用这个APP中的key，好让大家能共享项目。
+
+
+
 # 实现如下
 ![image](https://github.com/xiaolongonly/Ticket-Analysis/blob/master/operate.gif)
 
@@ -14,9 +23,9 @@
 
 2. 关注彩种
 3. 一些简单的趋势分析
-4. 号码预测（号码预测做的比较简单，直接算出每个号码的多期平均值，和期望平均值做对比。取均值。理论上应该是范围内的都是概率发生的，这一块其实可以加入奇偶频率，号码频率，和一些其他的条件来做预测，后面会继续做优化）
+4.号码预测（号码预测做的比较简单，直接算出每个号码的多期平均值，和期望平均值做对比。取均值。理论上应该是范围内的都是概率发生的，这一块其实可以加入奇偶频率，号码频率，和一些其他的条件来做预测，后面会继续做优化）
 5. 接口原因，能用到的接口只有四个。 自己编写了规则文档。还有一些其他必要的功能。
-6. 最后面想说的是这里其实更需要一个后台来爬取数据做动态更新。（打算写一个后台和爬虫来搞）
+6.最后面想说的是这里其实更需要一个后台来爬取数据做动态更新。（打算写一个后台和爬虫来搞）
 
 
 
@@ -107,10 +116,11 @@ n个正选加一个特别号码：![image](https://github.com/xiaolongonly/Ticke
 
 # Then Coding...
 
-  
-# License
+项目已经开发完成，除特殊情况，项目不在维护。有Android相关的开发合作可联系QQ：719243738
 
-```
-Copyright 2017 Xiaolong 
+如果你喜欢本项目，可以发个红包支持一下作者。
 
-```
+wx
+![image](https://github.com/xiaolongonly/Ticket-Analysis/blob/master/wx.png)
+
+

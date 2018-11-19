@@ -1,7 +1,5 @@
 package cn.xiaolong.ticketsystem.manager;
 
-import android.text.TextUtils;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.standards.library.cache.SPHelp;
@@ -75,7 +73,7 @@ public class TicketTypeDataManager {
                         .flatMap(ticketTypes -> {
                             List<TicketType> areaTypeList = new ArrayList<TicketType>();
                             for (TicketType ticketType : ticketTypes) {
-                                if (!ticketType.area.equals("") && !ticketType.issuer.equals("境外")) {
+                                if (!ticketType.area.equals("全国彩") && !ticketType.issuer.equals("境外")) {
                                     areaTypeList.add(ticketType);
                                 }
                             }
@@ -155,7 +153,7 @@ public class TicketTypeDataManager {
                         .flatMap(ticketTypes -> {
                             List<TicketType> countryTypeList = new ArrayList<TicketType>();
                             for (TicketType ticketType : ticketTypes) {
-                                if (ticketType.area.equals("") && !ticketType.issuer.equals("境外")) {
+                                if (ticketType.area.equals("全国彩") && !ticketType.issuer.equals("境外")) {
                                     countryTypeList.add(ticketType);
                                 }
                             }
